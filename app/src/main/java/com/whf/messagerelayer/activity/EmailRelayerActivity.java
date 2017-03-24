@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.CompoundButton;
+import android.widget.EditText;
 import android.widget.RelativeLayout;
 import android.widget.Switch;
 import android.widget.TextView;
@@ -20,8 +21,8 @@ import org.w3c.dom.Text;
 public class EmailRelayerActivity extends AppCompatActivity implements
         CompoundButton.OnCheckedChangeListener,View.OnClickListener{
 
-    private Switch mEmailSwitch;
-    private RelativeLayout mLayoutAccount,mLayoutServicer;
+    private Switch mEmailSwitch,mSslSwitch;
+    private RelativeLayout mLayoutAccount,mLayoutServicer,mLayoutAddress,mLayoutPort;
     private TextView mTextAccount,mTextServicer;
 
     private NativeDataManager mNativeDataManager;
@@ -38,9 +39,12 @@ public class EmailRelayerActivity extends AppCompatActivity implements
 
     private void initView(){
         mEmailSwitch = (Switch) findViewById(R.id.switch_email);
+        mSslSwitch = (Switch) findViewById(R.id.switch_ssl);
 
         mLayoutServicer = (RelativeLayout) findViewById(R.id.layout_servicer);
         mLayoutAccount = (RelativeLayout) findViewById(R.id.layout_account);
+        mLayoutAddress = (RelativeLayout) findViewById(R.id.layout_address);
+        mLayoutPort = (RelativeLayout) findViewById(R.id.layout_port);
 
         mTextServicer = (TextView) findViewById(R.id.text_servicer);
         mTextAccount = (TextView) findViewById(R.id.text_account);
@@ -49,8 +53,9 @@ public class EmailRelayerActivity extends AppCompatActivity implements
     private void initListener(){
         mLayoutServicer.setOnClickListener(this);
         mLayoutAccount.setOnClickListener(this);
+        mLayoutAddress.setOnClickListener(this);
+        mLayoutPort.setOnClickListener(this);
     }
-
 
     @Override
     public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
@@ -65,6 +70,12 @@ public class EmailRelayerActivity extends AppCompatActivity implements
                 break;
             case R.id.layout_account:
                 showAccountDialog();
+                break;
+            case R.id.layout_address:
+                showAddressDialog();
+                break;
+            case R.id.layout_port:
+                showPortDialog();
                 break;
         }
     }
@@ -137,6 +148,41 @@ public class EmailRelayerActivity extends AppCompatActivity implements
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         View view = LayoutInflater.from(this).inflate(R.layout.dialog_email_account,null,false);
         builder.setView(view);
+
+        final EditText textAccount = (EditText) view.findViewById(R.id.editText_account);
+        final EditText textPassword = (EditText) view.findViewById(R.id.editText_password);
+
+        textAccount.setText(mNativeDataManager.getEmailAccount());
+        textPassword.setText(mNativeDataManager.getEmailPassword());
+
+        builder.setPositiveButton("确定", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                mNativeDataManager.setEmailAccount(textAccount.getText().toString());
+                mNativeDataManager.setEmailPassword(textPassword.getText().toString());
+                mTextAccount.setText(textAccount.getText());
+            }
+        });
+
+        builder.setNegativeButton("取消", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+            }
+        });
+
+        builder.show();
+    }
+
+    private void showAddressDialog(){
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        View view = LayoutInflater.from(this).inflate(R.layout.dialog_edit,null,false);
+        TextView textViewTitle = (TextView) view.findViewById(R.id.dialog_title);
+        EditText editText = (EditText) view.findViewById(R.id.dialog_edit);
+
+        textViewTitle.setText("请输入SMTP服务器地址");
+        editText.setText(mNativeDataManager.getEmailAddress());
+        builder.setView(view);
+
         builder.setPositiveButton("确定", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
@@ -150,6 +196,32 @@ public class EmailRelayerActivity extends AppCompatActivity implements
 
             }
         });
-        final AlertDialog dialog = builder.show();
+        builder.show();
+    }
+
+    private void showPortDialog() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        View view = LayoutInflater.from(this).inflate(R.layout.dialog_edit,null,false);
+        TextView textViewTitle = (TextView) view.findViewById(R.id.dialog_title);
+        EditText editText = (EditText) view.findViewById(R.id.dialog_edit);
+
+        textViewTitle.setText("请输入SMTP端口号");
+        editText.setText(mNativeDataManager.getEmailAddress());
+        builder.setView(view);
+
+        builder.setPositiveButton("确定", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+
+            }
+        });
+
+        builder.setNegativeButton("取消", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+
+            }
+        });
+        builder.show();
     }
 }

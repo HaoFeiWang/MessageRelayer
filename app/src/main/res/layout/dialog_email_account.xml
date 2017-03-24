@@ -8,23 +8,28 @@
         android:layout_height="wrap_content"
         android:gravity="center_horizontal"
         android:padding="20dp"
-        android:text="请输入邮箱账号和密码"/>
+        android:text="请输入邮箱账号和密码"
+        android:textSize="17sp"/>
 
     <EditText
+        android:id="@+id/editText_account"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="30dp"
         android:layout_marginRight="30dp"
         android:layout_marginTop="20dp"
         android:hint="账号:"
-        android:id="@+id/editText"/>
+        android:textSize="15sp"/>
 
     <EditText
+        android:id="@+id/editText_password"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="30dp"
         android:layout_marginRight="30dp"
         android:layout_marginTop="10dp"
         android:layout_marginBottom="10dp"
-        android:hint="密码:"/>
+        android:hint="密码:"
+        android:textSize="15sp"
+        android:inputType="textPassword"/>
 </LinearLayout>

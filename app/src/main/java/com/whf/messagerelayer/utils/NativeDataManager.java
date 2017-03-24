@@ -63,6 +63,44 @@ public class NativeDataManager {
         return mPreference.getString(Constant.KEY_EMAIL_SERVICER,Constant.EMAIL_SERVICER_QQ);
     }
     public void setEmailServicer(String servicer){
+        mPreference.edit().putString(Constant.KEY_EMAIL_SERVICER,servicer).apply();
+    }
 
+    public void setEmailAccount(String account){
+        mPreference.edit().putString(Constant.KEY_EMAIL_ACCOUNT,account).apply();
+    }
+
+    public String getEmailAccount(){
+        return mPreference.getString(Constant.KEY_EMAIL_ACCOUNT,null);
+    }
+
+    public void setEmailPassword(String password){
+        mPreference.edit().putString(Constant.KEY_EMAIL_PASSWORD,password).apply();
+    }
+    public String getEmailPassword(){
+        return mPreference.getString(Constant.KEY_EMAIL_PASSWORD,null);
+    }
+
+    public void setEmailAddress(String address){
+        mPreference.edit().putString(Constant.KEY_EMAIL_ADDRESS,address).apply();
+    }
+    public void setEmailPort(String port){
+        mPreference.edit().putString(Constant.KEY_EMAIL_PORT,port).apply();
+    }
+
+    public String getEmailAddress(){
+        return mPreference.getString(Constant.KEY_EMAIL_ADDRESS,null);
+    }
+
+    public String getEmailPort(){
+        return mPreference.getString(Constant.KEY_EMAIL_PORT,null);
+    }
+
+    public void setEmailSsl(Boolean b){
+        mPreference.edit().putBoolean(Constant.KEY_EMAIL_SSL,b).apply();
+    }
+
+    public Boolean getEmailSsl(){
+        return mPreference.getBoolean(Constant.KEY_EMAIL_SSL,false);
     }
 }

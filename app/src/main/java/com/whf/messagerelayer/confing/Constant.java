@@ -29,4 +29,10 @@ public class Constant {
     public static final String EMAIL_SERVICER_GMAIL = "Gmail";
     public static final String EMAIL_SERVICER_OTHER = "其他邮箱";
 
+    public static final String KEY_EMAIL_ACCOUNT = "account";
+    public static final String KEY_EMAIL_PASSWORD = "password";
+
+    public static final String KEY_EMAIL_ADDRESS = "address";
+    public static final String KEY_EMAIL_PORT = "port";
+    public static final String KEY_EMAIL_SSL = "ssl";
 }

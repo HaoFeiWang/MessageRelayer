@@ -114,7 +114,7 @@ public class SmsRelayerActivity extends AppCompatActivity
 
     private void showEditDialog(){
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        View view = LayoutInflater.from(this).inflate(R.layout.dialog_edit_mobile,null,false);
+        View view = LayoutInflater.from(this).inflate(R.layout.dialog_edit,null,false);
         final EditText mobileEdit = (EditText) view.findViewById(R.id.dialog_edit);
         mobileEdit.setText(mMobileText.getText());
         builder.setView(view);

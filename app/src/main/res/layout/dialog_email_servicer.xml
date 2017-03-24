@@ -8,9 +8,9 @@
         android:id="@+id/text_qq_email"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:paddingBottom="10dp"
+        android:paddingBottom="15dp"
         android:paddingLeft="30dp"
-        android:paddingTop="10dp"
+        android:paddingTop="15dp"
         android:text="QQ邮箱"
         android:textSize="14sp"
         android:clickable="true"/>
@@ -24,9 +24,9 @@
         android:id="@+id/text_163_email"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:paddingBottom="10dp"
+        android:paddingBottom="15dp"
         android:paddingLeft="30dp"
-        android:paddingTop="10dp"
+        android:paddingTop="15dp"
         android:text="163邮箱"
         android:textSize="14sp"
         android:clickable="true"/>
@@ -40,9 +40,9 @@
         android:id="@+id/text_126_email"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:paddingBottom="10dp"
+        android:paddingBottom="15dp"
         android:paddingLeft="30dp"
-        android:paddingTop="10dp"
+        android:paddingTop="15dp"
         android:text="126邮箱"
         android:textSize="14sp"
         android:clickable="true"/>
@@ -56,9 +56,9 @@
         android:id="@+id/text_outlook_email"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:paddingBottom="10dp"
+        android:paddingBottom="15dp"
         android:paddingLeft="30dp"
-        android:paddingTop="10dp"
+        android:paddingTop="15dp"
         android:text="OutLook"
         android:textSize="14sp"
         android:clickable="true"/>
@@ -73,9 +73,9 @@
         android:id="@+id/text_gmail_email"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:paddingBottom="10dp"
+        android:paddingBottom="15dp"
         android:paddingLeft="30dp"
-        android:paddingTop="10dp"
+        android:paddingTop="15dp"
         android:text="Gmail"
         android:textSize="14sp"/>
 
@@ -88,9 +88,9 @@
         android:id="@+id/text_other_email"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:paddingBottom="10dp"
+        android:paddingBottom="15dp"
         android:paddingLeft="30dp"
-        android:paddingTop="10dp"
+        android:paddingTop="15dp"
         android:text="其他邮箱"
         android:textSize="14sp"/>
 
