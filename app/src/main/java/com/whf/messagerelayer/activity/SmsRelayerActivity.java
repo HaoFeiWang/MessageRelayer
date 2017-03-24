@@ -4,7 +4,6 @@ import android.content.DialogInterface;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.CompoundButton;
@@ -14,7 +13,6 @@ import android.widget.Switch;
 import android.widget.TextView;
 
 import com.whf.messagerelayer.R;
-import com.whf.messagerelayer.confing.Configure;
 import com.whf.messagerelayer.utils.NativeDataManager;
 
 public class SmsRelayerActivity extends AppCompatActivity
@@ -116,7 +114,7 @@ public class SmsRelayerActivity extends AppCompatActivity
 
     private void showEditDialog(){
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        View view = LayoutInflater.from(this).inflate(R.layout.dialog_edit,null,false);
+        View view = LayoutInflater.from(this).inflate(R.layout.dialog_edit_mobile,null,false);
         final EditText mobileEdit = (EditText) view.findViewById(R.id.dialog_edit);
         mobileEdit.setText(mMobileText.getText());
         builder.setView(view);

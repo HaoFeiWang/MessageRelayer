@@ -3,25 +3,23 @@ package com.whf.messagerelayer.receiver;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
-import android.content.res.Configuration;
-import android.graphics.Bitmap;
 import android.os.Bundle;
-import android.telephony.SmsManager;
 import android.telephony.SmsMessage;
-import android.util.Log;
 
-import com.whf.messagerelayer.confing.Configure;
 import com.whf.messagerelayer.confing.Constant;
+import com.whf.messagerelayer.utils.NativeDataManager;
 
 public class MessageReceiver extends BroadcastReceiver {
 
+    private NativeDataManager mNativeDataManager;
     public MessageReceiver() {
+
     }
 
     @Override
     public void onReceive(Context context, Intent intent) {
-
-        if(Configure.is_receiver){
+        this.mNativeDataManager = new NativeDataManager(context);
+        if(mNativeDataManager.getReceiver()){
             Bundle bundle = intent.getExtras();
             if(bundle!=null){
                 Object[] pdus = (Object[]) bundle.get("pdus");

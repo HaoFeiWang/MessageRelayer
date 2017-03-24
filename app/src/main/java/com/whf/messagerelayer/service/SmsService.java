@@ -5,7 +5,6 @@ import android.content.Intent;
 import android.os.IBinder;
 import android.telephony.SmsManager;
 
-import com.whf.messagerelayer.confing.Configure;
 import com.whf.messagerelayer.confing.Constant;
 import com.whf.messagerelayer.utils.NativeDataManager;
 

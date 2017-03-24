@@ -26,28 +26,43 @@ public class NativeDataManager {
     }
 
     public void setSmsRelay(Boolean b) {
-        mPreference.edit().putBoolean(Constant.KEY_SMS_RELAY, b).apply();
+        mPreference.edit().putBoolean(Constant.KEY_RELAY_SMS, b).apply();
 
     }
 
     public Boolean getSmsRelay(){
-        return mPreference.getBoolean(Constant.KEY_SMS_RELAY, false);
+        return mPreference.getBoolean(Constant.KEY_RELAY_SMS, false);
     }
 
     public void setSmsProxyRelay(Boolean b){
-        mPreference.edit().putBoolean(Constant.KEY_SMS_PROXY_RELAY, b).apply();
+        mPreference.edit().putBoolean(Constant.KEY_RELAY_SMS_PROXY, b).apply();
 
     }
 
     public boolean getSmsProxyRelay(){
-        return mPreference.getBoolean(Constant.KEY_SMS_PROXY_RELAY, false);
+        return mPreference.getBoolean(Constant.KEY_RELAY_SMS_PROXY, false);
     }
 
     public void setEmailRelay(Boolean b){
-        mPreference.edit().putBoolean(Constant.KEY_EMAIL_RELAY, b).apply();
+        mPreference.edit().putBoolean(Constant.KEY_RELAY_EMAIL, b).apply();
     }
 
     public boolean getEmailRelay(){
-        return mPreference.getBoolean(Constant.KEY_EMAIL_RELAY, false);
+        return mPreference.getBoolean(Constant.KEY_RELAY_EMAIL, false);
+    }
+
+    public void setReceiver(Boolean b){
+        mPreference.edit().putBoolean(Constant.KEY_RECEIVER, b).apply();
+    }
+
+    public boolean getReceiver(){
+        return mPreference.getBoolean(Constant.KEY_RECEIVER, false);
+    }
+
+    public String getEmailServicer(){
+        return mPreference.getString(Constant.KEY_EMAIL_SERVICER,Constant.EMAIL_SERVICER_QQ);
+    }
+    public void setEmailServicer(String servicer){
+
     }
 }
