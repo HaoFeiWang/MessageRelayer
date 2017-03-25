@@ -22,18 +22,20 @@ public class Constant {
     public static final String KEY_OBJECT_MOBILE = "mobile";
 
 
-    public static final String EMAIL_SERVICER_QQ = "QQ邮箱";
-    public static final String EMAIL_SERVICER_163 = "163邮箱";
-    public static final String EMAIL_SERVICER_126 = "126邮箱";
-    public static final String EMAIL_SERVICER_OUTLOOK = "Outlook";
-    public static final String EMAIL_SERVICER_GMAIL = "Gmail";
-    public static final String EMAIL_SERVICER_OTHER = "其他邮箱";
-
     public static final String KEY_EMAIL_ACCOUNT = "account";
     public static final String KEY_EMAIL_PASSWORD = "password";
     public static final String KEY_EMAIL_TO_ACCOUNT = "to_account";
+    public static final String KEY_EMAIL_SENDER_NAME = "sender_name";
+    public static final String KEY_EMAIL_SUBJECT = "subject";
 
-    public static final String KEY_EMAIL_ADDRESS = "address";
+    public static final String KEY_EMAIL_HOST = "host";
     public static final String KEY_EMAIL_PORT = "port";
     public static final String KEY_EMAIL_SSL = "ssl";
+
+    public static final String EMAIL_SERVICER_QQ = "QQ邮箱";
+    public static final String EMAIL_SERVICER_163 = "163邮箱";
+    public static final String EMAIL_SERVICER_126 = "126邮箱";
+    public static final String EMAIL_SERVICER_OUTLOOK = "OutLook";
+    public static final String EMAIL_SERVICER_GMAIL = "Gmail";
+    public static final String EMAIL_SERVICER_OTHER = "其他邮箱";
 }

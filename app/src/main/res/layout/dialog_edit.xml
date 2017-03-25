@@ -19,5 +19,5 @@
         android:layout_marginTop="30dp"
         android:layout_marginLeft="30dp"
         android:layout_marginRight="30dp"
-        android:inputType="phone"/>
+        android:inputType="text"/>
 </RelativeLayout>

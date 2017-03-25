@@ -81,15 +81,15 @@ public class NativeDataManager {
         return mPreference.getString(Constant.KEY_EMAIL_PASSWORD,null);
     }
 
-    public void setEmailAddress(String address){
-        mPreference.edit().putString(Constant.KEY_EMAIL_ADDRESS,address).apply();
+    public void setEmailHost(String address){
+        mPreference.edit().putString(Constant.KEY_EMAIL_HOST,address).apply();
     }
     public void setEmailPort(String port){
         mPreference.edit().putString(Constant.KEY_EMAIL_PORT,port).apply();
     }
 
-    public String getEmailAddress(){
-        return mPreference.getString(Constant.KEY_EMAIL_ADDRESS,null);
+    public String getEmailHost(){
+        return mPreference.getString(Constant.KEY_EMAIL_HOST,null);
     }
 
     public String getEmailPort(){
@@ -108,8 +108,23 @@ public class NativeDataManager {
         mPreference.edit().putString(Constant.KEY_EMAIL_TO_ACCOUNT,account).apply();
     }
 
-    public String getEmailToAccout(){
+    public String getEmailToAccount(){
         return mPreference.getString(Constant.KEY_EMAIL_TO_ACCOUNT,null);
     }
 
+    public void setEmailSenderName(String name){
+        mPreference.edit().putString(Constant.KEY_EMAIL_SENDER_NAME,name).apply();
+    }
+
+    public String getEmailSenderName(){
+        return mPreference.getString(Constant.KEY_EMAIL_SENDER_NAME,"王亮");
+    }
+
+    public void setEmailSubject(String subject){
+        mPreference.edit().putString(Constant.KEY_EMAIL_SUBJECT,subject).apply();
+    }
+
+    public String getEmailSubject(){
+        return mPreference.getString(Constant.KEY_EMAIL_SUBJECT,"周工作总结");
+    }
 }

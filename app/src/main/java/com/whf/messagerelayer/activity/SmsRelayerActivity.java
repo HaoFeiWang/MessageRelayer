@@ -37,7 +37,7 @@ public class SmsRelayerActivity extends AppCompatActivity
         mNativeDataManager = new NativeDataManager(this);
 
         initView();
-        initGoneMode();
+        initData();
         initListener();
 
     }
@@ -51,11 +51,12 @@ public class SmsRelayerActivity extends AppCompatActivity
         mMobileText = (TextView) findViewById(R.id.text_mobile);
     }
 
-    private void initGoneMode(){
+    private void initData(){
         if(mNativeDataManager.getSmsRelay()){
             mSmsSwitch.setChecked(true);
             mMobileLine.setVisibility(View.VISIBLE);
             mMobileRelative.setVisibility(View.VISIBLE);
+            mMobileText.setText(mNativeDataManager.getObjectMobile());
         }else{
             mSmsSwitch.setChecked(false);
             mMobileLine.setVisibility(View.GONE);

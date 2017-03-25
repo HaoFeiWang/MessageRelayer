@@ -103,6 +103,7 @@
     </RelativeLayout>
 
     <View
+        android:id="@+id/line_address"
         android:layout_width="match_parent"
         android:layout_height="0.1dp"
         android:layout_marginLeft="15dp"
@@ -120,6 +121,7 @@
         android:paddingTop="10dp">
 
         <TextView
+            android:id="@+id/line_port"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:gravity="center_vertical"
@@ -196,7 +198,7 @@
             android:layout_height="match_parent"
             android:layout_alignParentRight="true"
             android:gravity="center_vertical"
-            android:text="292265806@qq.com"
+            android:text="点击设置"
             android:textSize="13sp"/>
     </RelativeLayout>
 
@@ -230,7 +232,7 @@
             android:layout_height="match_parent"
             android:layout_alignParentRight="true"
             android:gravity="center_vertical"
-            android:text="292265806@qq.com"
+            android:text="点击设置"
             android:textSize="13sp"/>
     </RelativeLayout>
 </LinearLayout>
