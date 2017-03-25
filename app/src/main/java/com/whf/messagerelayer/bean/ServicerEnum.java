@@ -8,7 +8,7 @@ public enum ServicerEnum {
 
     EMAIL_QQ("smtp.qq.com","465",true),EMAIL_126("smtp.qq.com","465",true)
     ,EMAIL_163("smtp.qq.com","465",true),EMAIL_OUTLOOK("smtp.qq.com","465",true)
-    ,EMAIL_GMAIL("smtp.qq.com","465",true),EMAIL_OTHER("smtp.qq.com","465",true);
+    ,EMAIL_GMAIL("smtp.qq.com","465",true);
 
     private String mUrl;
     private String mPort;

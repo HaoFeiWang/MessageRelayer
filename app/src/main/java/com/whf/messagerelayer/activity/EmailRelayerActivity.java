@@ -23,7 +23,7 @@ public class EmailRelayerActivity extends AppCompatActivity implements
 
     private Switch mEmailSwitch,mSslSwitch;
     private RelativeLayout mLayoutAccount,mLayoutServicer,mLayoutAddress,mLayoutPort;
-    private TextView mTextAccount,mTextServicer;
+    private TextView mTextAccount,mTextServicer,mTextAddress,mTextPort;
 
     private NativeDataManager mNativeDataManager;
 
@@ -48,6 +48,8 @@ public class EmailRelayerActivity extends AppCompatActivity implements
 
         mTextServicer = (TextView) findViewById(R.id.text_servicer);
         mTextAccount = (TextView) findViewById(R.id.text_account);
+        mTextAddress = (TextView) findViewById(R.id.text_address);
+        mTextPort = (TextView) findViewById(R.id.text_port);
     }
 
     private void initListener(){
@@ -177,7 +179,7 @@ public class EmailRelayerActivity extends AppCompatActivity implements
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         View view = LayoutInflater.from(this).inflate(R.layout.dialog_edit,null,false);
         TextView textViewTitle = (TextView) view.findViewById(R.id.dialog_title);
-        EditText editText = (EditText) view.findViewById(R.id.dialog_edit);
+        final EditText editText = (EditText) view.findViewById(R.id.dialog_edit);
 
         textViewTitle.setText("请输入SMTP服务器地址");
         editText.setText(mNativeDataManager.getEmailAddress());
@@ -186,7 +188,8 @@ public class EmailRelayerActivity extends AppCompatActivity implements
         builder.setPositiveButton("确定", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-
+                mNativeDataManager.setEmailAddress(editText.getText().toString());
+                mTextAddress.setText(editText.getText().toString());
             }
         });
 
@@ -203,16 +206,17 @@ public class EmailRelayerActivity extends AppCompatActivity implements
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         View view = LayoutInflater.from(this).inflate(R.layout.dialog_edit,null,false);
         TextView textViewTitle = (TextView) view.findViewById(R.id.dialog_title);
-        EditText editText = (EditText) view.findViewById(R.id.dialog_edit);
+        final EditText editText = (EditText) view.findViewById(R.id.dialog_edit);
 
         textViewTitle.setText("请输入SMTP端口号");
-        editText.setText(mNativeDataManager.getEmailAddress());
+        editText.setText(mNativeDataManager.getEmailPort());
         builder.setView(view);
 
         builder.setPositiveButton("确定", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-
+                mNativeDataManager.setEmailPort(editText.getText().toString());
+                mTextPort.setText(editText.getText().toString());
             }
         });
 

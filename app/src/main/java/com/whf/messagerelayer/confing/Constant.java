@@ -31,6 +31,7 @@ public class Constant {
 
     public static final String KEY_EMAIL_ACCOUNT = "account";
     public static final String KEY_EMAIL_PASSWORD = "password";
+    public static final String KEY_EMAIL_TO_ACCOUNT = "to_account";
 
     public static final String KEY_EMAIL_ADDRESS = "address";
     public static final String KEY_EMAIL_PORT = "port";

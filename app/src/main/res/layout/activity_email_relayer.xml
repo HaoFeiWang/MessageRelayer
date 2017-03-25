@@ -11,47 +11,53 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="60dp"
+        android:layout_marginTop="30dp"
+        android:background="@android:color/white"
+        android:paddingBottom="10dp"
         android:paddingLeft="20dp"
         android:paddingRight="20dp"
-        android:paddingTop="10dp"
-        android:paddingBottom="10dp"
-        android:layout_marginTop="30dp"
-        android:background="@android:color/white">
+        android:paddingTop="10dp">
+
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:gravity="center_vertical"
             android:text="转发至邮箱"
             android:textSize="15sp"/>
+
         <Switch
             android:id="@+id/switch_email"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_alignParentRight="true"/>
     </RelativeLayout>
+
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="15dp"
-        android:layout_marginLeft="15dp"
         android:layout_marginBottom="5dp"
+        android:layout_marginLeft="15dp"
+        android:layout_marginTop="15dp"
         android:text="SMTP服务"
         android:textSize="10sp"/>
+
     <RelativeLayout
         android:id="@+id/layout_servicer"
         android:layout_width="match_parent"
         android:layout_height="60dp"
+        android:background="@android:color/white"
+        android:paddingBottom="10dp"
         android:paddingLeft="20dp"
         android:paddingRight="20dp"
-        android:paddingTop="10dp"
-        android:paddingBottom="10dp"
-        android:background="@android:color/white">
+        android:paddingTop="10dp">
+
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:gravity="center_vertical"
             android:text="SMTP服务器"
             android:textSize="15sp"/>
+
         <TextView
             android:id="@+id/text_servicer"
             android:layout_width="wrap_content"
@@ -61,26 +67,31 @@
             android:text="QQ邮箱"
             android:textSize="13sp"/>
     </RelativeLayout>
-    <View android:layout_width="match_parent"
+
+    <View
+        android:layout_width="match_parent"
         android:layout_height="0.1dp"
         android:layout_marginLeft="15dp"
         android:layout_marginRight="15dp"
         android:background="@color/colorLine"/>
+
     <RelativeLayout
         android:id="@+id/layout_address"
         android:layout_width="match_parent"
         android:layout_height="60dp"
+        android:background="@android:color/white"
+        android:paddingBottom="10dp"
         android:paddingLeft="20dp"
         android:paddingRight="20dp"
-        android:paddingTop="10dp"
-        android:paddingBottom="10dp"
-        android:background="@android:color/white">
+        android:paddingTop="10dp">
+
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:gravity="center_vertical"
             android:text="服务器地址"
             android:textSize="15sp"/>
+
         <TextView
             android:id="@+id/text_address"
             android:layout_width="wrap_content"
@@ -90,26 +101,31 @@
             android:text="点击设置"
             android:textSize="13sp"/>
     </RelativeLayout>
-    <View android:layout_width="match_parent"
+
+    <View
+        android:layout_width="match_parent"
         android:layout_height="0.1dp"
         android:layout_marginLeft="15dp"
         android:layout_marginRight="15dp"
         android:background="@color/colorLine"/>
+
     <RelativeLayout
         android:id="@+id/layout_port"
         android:layout_width="match_parent"
         android:layout_height="60dp"
+        android:background="@android:color/white"
+        android:paddingBottom="10dp"
         android:paddingLeft="20dp"
         android:paddingRight="20dp"
-        android:paddingTop="10dp"
-        android:paddingBottom="10dp"
-        android:background="@android:color/white">
+        android:paddingTop="10dp">
+
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:gravity="center_vertical"
             android:text="服务器端口"
             android:textSize="15sp"/>
+
         <TextView
             android:id="@+id/text_port"
             android:layout_width="wrap_content"
@@ -119,51 +135,61 @@
             android:text="点击设置"
             android:textSize="13sp"/>
     </RelativeLayout>
-    <View android:layout_width="match_parent"
-          android:layout_height="0.1dp"
-          android:layout_marginLeft="15dp"
-          android:layout_marginRight="15dp"
-          android:background="@color/colorLine"/>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0.1dp"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
+        android:background="@color/colorLine"/>
+
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="60dp"
+        android:background="@android:color/white"
+        android:paddingBottom="10dp"
         android:paddingLeft="20dp"
         android:paddingRight="20dp"
-        android:paddingTop="10dp"
-        android:paddingBottom="10dp"
-        android:background="@android:color/white">
+        android:paddingTop="10dp">
+
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:gravity="center_vertical"
             android:text="采用SSL方式"
             android:textSize="15sp"/>
+
         <Switch
             android:id="@+id/switch_ssl"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_alignParentRight="true"/>
     </RelativeLayout>
-    <View android:layout_width="match_parent"
-          android:layout_height="0.1dp"
-          android:layout_marginLeft="15dp"
-          android:layout_marginRight="15dp"
-          android:background="@color/colorLine"/>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0.1dp"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
+        android:background="@color/colorLine"/>
+
     <RelativeLayout
         android:id="@+id/layout_account"
         android:layout_width="match_parent"
         android:layout_height="60dp"
+        android:background="@android:color/white"
+        android:paddingBottom="10dp"
         android:paddingLeft="20dp"
         android:paddingRight="20dp"
-        android:paddingTop="10dp"
-        android:paddingBottom="10dp"
-        android:background="@android:color/white">
+        android:paddingTop="10dp">
+
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:gravity="center_vertical"
             android:text="SMTP邮箱账号"
             android:textSize="15sp"/>
+
         <TextView
             android:id="@+id/text_account"
             android:layout_width="wrap_content"
@@ -173,13 +199,39 @@
             android:text="292265806@qq.com"
             android:textSize="13sp"/>
     </RelativeLayout>
-    <Button
-        android:id="@+id/button_test"
+
+    <View
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginTop="30dp"
+        android:layout_height="0.1dp"
         android:layout_marginLeft="15dp"
         android:layout_marginRight="15dp"
-        android:text="测试SMTP"/>
+        android:background="@color/colorLine"/>
+
+    <RelativeLayout
+        android:id="@+id/layout_to_account"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:background="@android:color/white"
+        android:paddingBottom="10dp"
+        android:paddingLeft="20dp"
+        android:paddingRight="20dp"
+        android:paddingTop="10dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:gravity="center_vertical"
+            android:text="目标邮箱账号"
+            android:textSize="15sp"/>
+
+        <TextView
+            android:id="@+id/text_to_account"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_alignParentRight="true"
+            android:gravity="center_vertical"
+            android:text="292265806@qq.com"
+            android:textSize="13sp"/>
+    </RelativeLayout>
 </LinearLayout>
+

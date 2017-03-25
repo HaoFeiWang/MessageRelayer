@@ -103,4 +103,13 @@ public class NativeDataManager {
     public Boolean getEmailSsl(){
         return mPreference.getBoolean(Constant.KEY_EMAIL_SSL,false);
     }
+
+    public void setEmailToAccount(String account){
+        mPreference.edit().putString(Constant.KEY_EMAIL_TO_ACCOUNT,account).apply();
+    }
+
+    public String getEmailToAccout(){
+        return mPreference.getString(Constant.KEY_EMAIL_TO_ACCOUNT,null);
+    }
+
 }
