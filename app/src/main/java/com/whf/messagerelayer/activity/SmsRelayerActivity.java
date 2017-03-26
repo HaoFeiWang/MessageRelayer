@@ -15,13 +15,14 @@ import android.widget.TextView;
 import com.whf.messagerelayer.R;
 import com.whf.messagerelayer.utils.NativeDataManager;
 
-public class SmsRelayerActivity extends AppCompatActivity
-        implements CompoundButton.OnCheckedChangeListener,View.OnClickListener{
+import org.w3c.dom.Text;
 
-    private Switch mSmsSwitch,mSmsProxySwitch;
-    private RelativeLayout mMobileRelative;
-    private View mMobileLine;
-    private TextView mMobileText;
+public class SmsRelayerActivity extends AppCompatActivity
+        implements CompoundButton.OnCheckedChangeListener, View.OnClickListener {
+
+    private Switch mSmsSwitch;
+    private RelativeLayout mMobileRelative, mCenterRelative;
+    private TextView mMobileText, mCenterText;
 
     private NativeDataManager mNativeDataManager;
 
@@ -33,7 +34,7 @@ public class SmsRelayerActivity extends AppCompatActivity
         init();
     }
 
-    private void init(){
+    private void init() {
         mNativeDataManager = new NativeDataManager(this);
 
         initView();
@@ -42,82 +43,69 @@ public class SmsRelayerActivity extends AppCompatActivity
 
     }
 
-    private void initView(){
+    private void initView() {
         mSmsSwitch = (Switch) findViewById(R.id.switch_sms);
-        mSmsProxySwitch = (Switch) findViewById(R.id.switch_sms_proxy);
-
-        mMobileLine = findViewById(R.id.line_mobile);
         mMobileRelative = (RelativeLayout) findViewById(R.id.layout_mobile);
         mMobileText = (TextView) findViewById(R.id.text_mobile);
     }
 
-    private void initData(){
-        if(mNativeDataManager.getSmsRelay()){
+    private void initData() {
+        if (mNativeDataManager.getSmsRelay()) {
             mSmsSwitch.setChecked(true);
-            mMobileLine.setVisibility(View.VISIBLE);
-            mMobileRelative.setVisibility(View.VISIBLE);
-            mMobileText.setText(mNativeDataManager.getObjectMobile());
-        }else{
+        } else {
             mSmsSwitch.setChecked(false);
-            mMobileLine.setVisibility(View.GONE);
-            mMobileRelative.setVisibility(View.GONE);
         }
+        mMobileText.setText(mNativeDataManager.getObjectMobile());
     }
 
-    private void initListener(){
+    private void initListener() {
         mSmsSwitch.setOnCheckedChangeListener(this);
-        mSmsProxySwitch.setOnCheckedChangeListener(this);
 
         mMobileRelative.setOnClickListener(this);
     }
 
     @Override
     public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-        switch (buttonView.getId()){
+        switch (buttonView.getId()) {
             case R.id.switch_sms:
                 smsChecked(isChecked);
-                break;
-            case R.id.switch_sms_proxy:
-                smsProxyChecked();
                 break;
         }
     }
 
-    private void smsProxyChecked() {
-
-    }
-
     /**
      * 使用短信转发至指定手机号的Switch的事件方法
+     *
      * @param isChecked
      */
     private void smsChecked(boolean isChecked) {
-        if(isChecked){
+        if (isChecked) {
             mNativeDataManager.setSmsRelay(true);
-            mMobileLine.setVisibility(View.VISIBLE);
-            mMobileRelative.setVisibility(View.VISIBLE);
-        }else{
+        } else {
             mNativeDataManager.setSmsRelay(false);
-            mMobileLine.setVisibility(View.GONE);
-            mMobileRelative.setVisibility(View.GONE);
         }
     }
 
 
     @Override
     public void onClick(View v) {
-        switch (v.getId()){
+        switch (v.getId()) {
             case R.id.layout_mobile:
                 showEditDialog();
                 break;
         }
     }
 
-    private void showEditDialog(){
+    private void showEditDialog() {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        View view = LayoutInflater.from(this).inflate(R.layout.dialog_edit,null,false);
+        View view = LayoutInflater.from(this).inflate(R.layout.dialog_edit, null, false);
         final EditText mobileEdit = (EditText) view.findViewById(R.id.dialog_edit);
-        mobileEdit.setText(mMobileText.getText());
+
+        String mobileText = mMobileText.getText().toString();
+        if(!mobileText.equals("点击设置")){
+            mobileEdit.setText(mobileText);
+        }
+
         builder.setView(view);
         builder.setNegativeButton("取消", new DialogInterface.OnClickListener() {
             @Override

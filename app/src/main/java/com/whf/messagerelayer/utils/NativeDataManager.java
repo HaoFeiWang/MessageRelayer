@@ -18,7 +18,7 @@ public class NativeDataManager {
     }
 
     public String getObjectMobile() {
-        return mPreference.getString(Constant.KEY_OBJECT_MOBILE, null);
+        return mPreference.getString(Constant.KEY_OBJECT_MOBILE, "点击设置");
     }
 
     public void setObjectMobile(String mobile) {
@@ -31,14 +31,6 @@ public class NativeDataManager {
 
     public Boolean getSmsRelay() {
         return mPreference.getBoolean(Constant.KEY_RELAY_SMS, false);
-    }
-
-    public void setSmsProxyRelay(Boolean b) {
-        mPreference.edit().putBoolean(Constant.KEY_RELAY_SMS_PROXY, b).apply();
-    }
-
-    public boolean getSmsProxyRelay() {
-        return mPreference.getBoolean(Constant.KEY_RELAY_SMS_PROXY, false);
     }
 
     public void setEmailRelay(Boolean b) {
@@ -54,7 +46,7 @@ public class NativeDataManager {
     }
 
     public boolean getReceiver() {
-        return mPreference.getBoolean(Constant.KEY_RECEIVER, false);
+        return mPreference.getBoolean(Constant.KEY_RECEIVER, true);
     }
 
     public String getEmailServicer() {
@@ -70,7 +62,7 @@ public class NativeDataManager {
     }
 
     public String getEmailAccount() {
-        return mPreference.getString(Constant.KEY_EMAIL_ACCOUNT, null);
+        return mPreference.getString(Constant.KEY_EMAIL_ACCOUNT, "点击设置");
     }
 
     public void setEmailPassword(String password) {
@@ -90,11 +82,11 @@ public class NativeDataManager {
     }
 
     public String getEmailHost() {
-        return mPreference.getString(Constant.KEY_EMAIL_HOST, null);
+        return mPreference.getString(Constant.KEY_EMAIL_HOST, "点击设置");
     }
 
     public String getEmailPort() {
-        return mPreference.getString(Constant.KEY_EMAIL_PORT, null);
+        return mPreference.getString(Constant.KEY_EMAIL_PORT, "点击设置");
     }
 
     public void setEmailSsl(Boolean b) {
@@ -102,7 +94,7 @@ public class NativeDataManager {
     }
 
     public Boolean getEmailSsl() {
-        return mPreference.getBoolean(Constant.KEY_EMAIL_SSL, false);
+        return mPreference.getBoolean(Constant.KEY_EMAIL_SSL, true);
     }
 
     public void setEmailToAccount(String account) {
@@ -110,7 +102,7 @@ public class NativeDataManager {
     }
 
     public String getEmailToAccount() {
-        return mPreference.getString(Constant.KEY_EMAIL_TO_ACCOUNT, null);
+        return mPreference.getString(Constant.KEY_EMAIL_TO_ACCOUNT, "点击设置");
     }
 
     public void setEmailSenderName(String name) {
@@ -129,16 +121,4 @@ public class NativeDataManager {
         return mPreference.getString(Constant.KEY_EMAIL_SUBJECT, "短信转发");
     }
 
-    public String getRuleKeyWord(){
-        return mPreference.getString(Constant.KEY_RULE_KEYWORD,null);
-    }
-    public String getRuleMobile(){
-        return mPreference.getString(Constant.KEY_RULE_MOBILE,null);
-    }
-    public void setRuleMobile(String mobile){
-        mPreference.edit().putString(Constant.KEY_RULE_MOBILE,mobile).apply();
-    }
-    public void setRuleKeyWord(String keyword){
-        mPreference.edit().putString(Constant.KEY_RULE_KEYWORD,keyword).apply();
-    }
 }

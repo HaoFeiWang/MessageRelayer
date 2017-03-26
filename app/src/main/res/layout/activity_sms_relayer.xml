@@ -17,7 +17,7 @@
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:gravity="center_vertical"
-            android:text="使用话费发送"
+            android:text="转发至短信"
             android:textSize="17sp"
             android:textColor="@color/colorDarkText"/>
         <Switch
@@ -44,7 +44,7 @@
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:gravity="center_vertical"
-            android:text="指定手机号"
+            android:text="目标手机号"
             android:textSize="17sp"
             android:textColor="@color/colorDarkText"/>
         <TextView
@@ -53,29 +53,8 @@
             android:layout_height="match_parent"
             android:layout_alignParentRight="true"
             android:gravity="center_vertical"
-            android:text="18409209558"
+            android:text="点击设置"
             android:textSize="15sp"
             android:textColor="@color/colorLightText"/>
     </RelativeLayout>
-
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="60dp"
-        android:layout_marginTop="30dp"
-        android:background="@android:color/white"
-        android:padding="15dp">
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:gravity="center_vertical"
-            android:text="使用流量发送"
-            android:textSize="17sp"
-            android:textColor="@color/colorDarkText"/>
-        <Switch
-            android:id="@+id/switch_sms_proxy"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_alignParentRight="true"/>
-    </RelativeLayout>
-
 </LinearLayout>

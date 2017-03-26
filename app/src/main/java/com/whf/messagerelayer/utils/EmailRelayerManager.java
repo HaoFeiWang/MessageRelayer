@@ -169,7 +169,6 @@ public class EmailRelayerManager {
     /**
      * 登录认证
      */
-    //uxdwujyofvqqcabd
     private static class SmtpAuthenticator extends Authenticator {
         String mUsername ;
         String mPassword ;

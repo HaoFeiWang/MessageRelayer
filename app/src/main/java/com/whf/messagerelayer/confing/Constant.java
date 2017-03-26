@@ -9,18 +9,15 @@ public class Constant {
     public static final String EXTRA_MESSAGE_CONTENT = "content";
     public static final String EXTRA_MESSAGE_MOBILE = "mobile";
 
-
     public static final String SETTING_FILE_NAME = "settingConf";
 
     public static final String KEY_RECEIVER = "is_receiver";
     public static final String KEY_RELAY_SMS = "is_sms_relay";
-    public static final String KEY_RELAY_SMS_PROXY = "is_sms_proxy_relay";
     public static final String KEY_RELAY_EMAIL = "is_email_relay";
 
     public static final String KEY_EMAIL_SERVICER = "email_servicer";
 
     public static final String KEY_OBJECT_MOBILE = "mobile";
-
 
     public static final String KEY_EMAIL_ACCOUNT = "account";
     public static final String KEY_EMAIL_PASSWORD = "password";
@@ -39,8 +36,5 @@ public class Constant {
     public static final String EMAIL_SERVICER_GMAIL = "Gmail";
     public static final String EMAIL_SERVICER_OTHER = "其他邮箱";
 
-    public static final String KEY_RULE_KEYWORD = "rule_keyword";
-    public static final String KEY_RULE_MOBILE = "rule_mobile";
 
-    public static final String API_KEY = "b09b7466aeb321e7207f2db8d7fdd63c";
 }

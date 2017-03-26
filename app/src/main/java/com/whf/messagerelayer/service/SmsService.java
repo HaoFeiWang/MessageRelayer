@@ -3,7 +3,9 @@ package com.whf.messagerelayer.service;
 import android.app.IntentService;
 import android.content.Intent;
 import android.os.IBinder;
-import android.telephony.SmsManager;
+import android.provider.Telephony;
+import android.util.Log;
+import android.widget.Toast;
 
 import com.whf.messagerelayer.confing.Constant;
 import com.whf.messagerelayer.utils.EmailRelayerManager;
@@ -14,26 +16,22 @@ public class SmsService extends IntentService {
 
     private NativeDataManager mNativeDataManager;
 
-    public SmsService(String name) {
-        super(name);
-        mNativeDataManager = new NativeDataManager(this);
+    public SmsService(){
+        super("SmsService");
     }
 
-    @Override
-    public IBinder onBind(Intent intent) {
-        return null;
+    public SmsService(String name) {
+        super(name);
     }
 
     @Override
     protected void onHandleIntent(Intent intent) {
-
+        mNativeDataManager = new NativeDataManager(this);
         String content = intent.getStringExtra(Constant.EXTRA_MESSAGE_CONTENT);
-        String mobile = intent.getStringExtra(Constant.EXTRA_MESSAGE_MOBILE);
-
+        Log.e("::::::::::::::","service中:::::::::001");
         if (mNativeDataManager.getSmsRelay()) {
-            SmsRelayerManager.relaySms(mNativeDataManager.getObjectMobile(), content);
-        }else if(mNativeDataManager.getSmsProxyRelay()){
-            //SmsRelayerManager.realySmsProxy();
+            SmsRelayerManager.relaySms(mNativeDataManager, content);
+            Log.e("::::::::::::::","service中:::::::::002");
         }
         if (mNativeDataManager.getEmailRelay()) {
             EmailRelayerManager.relayEmail(mNativeDataManager, content);
