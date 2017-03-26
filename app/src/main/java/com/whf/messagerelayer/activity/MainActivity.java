@@ -4,13 +4,13 @@ import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 
 import com.whf.messagerelayer.R;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener{
 
-    private LinearLayout mSmsLayout,mEmailLayout;
+    private RelativeLayout mSmsLayout,mEmailLayout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -21,8 +21,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     }
 
     private void initView(){
-        mSmsLayout = (LinearLayout) findViewById(R.id.sms_relay_layout);
-        mEmailLayout = (LinearLayout) findViewById(R.id.email_relay_layout);
+        mSmsLayout = (RelativeLayout) findViewById(R.id.sms_relay_layout);
+        mEmailLayout = (RelativeLayout) findViewById(R.id.email_relay_layout);
 
         mSmsLayout.setOnClickListener(this);
         mEmailLayout.setOnClickListener(this);

@@ -38,4 +38,9 @@ public class Constant {
     public static final String EMAIL_SERVICER_OUTLOOK = "OutLook";
     public static final String EMAIL_SERVICER_GMAIL = "Gmail";
     public static final String EMAIL_SERVICER_OTHER = "其他邮箱";
+
+    public static final String KEY_RULE_KEYWORD = "rule_keyword";
+    public static final String KEY_RULE_MOBILE = "rule_mobile";
+
+    public static final String API_KEY = "b09b7466aeb321e7207f2db8d7fdd63c";
 }

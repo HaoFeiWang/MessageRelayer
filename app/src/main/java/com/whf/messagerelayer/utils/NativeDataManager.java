@@ -27,104 +27,118 @@ public class NativeDataManager {
 
     public void setSmsRelay(Boolean b) {
         mPreference.edit().putBoolean(Constant.KEY_RELAY_SMS, b).apply();
-
     }
 
-    public Boolean getSmsRelay(){
+    public Boolean getSmsRelay() {
         return mPreference.getBoolean(Constant.KEY_RELAY_SMS, false);
     }
 
-    public void setSmsProxyRelay(Boolean b){
+    public void setSmsProxyRelay(Boolean b) {
         mPreference.edit().putBoolean(Constant.KEY_RELAY_SMS_PROXY, b).apply();
-
     }
 
-    public boolean getSmsProxyRelay(){
+    public boolean getSmsProxyRelay() {
         return mPreference.getBoolean(Constant.KEY_RELAY_SMS_PROXY, false);
     }
 
-    public void setEmailRelay(Boolean b){
+    public void setEmailRelay(Boolean b) {
         mPreference.edit().putBoolean(Constant.KEY_RELAY_EMAIL, b).apply();
     }
 
-    public boolean getEmailRelay(){
+    public boolean getEmailRelay() {
         return mPreference.getBoolean(Constant.KEY_RELAY_EMAIL, false);
     }
 
-    public void setReceiver(Boolean b){
+    public void setReceiver(Boolean b) {
         mPreference.edit().putBoolean(Constant.KEY_RECEIVER, b).apply();
     }
 
-    public boolean getReceiver(){
+    public boolean getReceiver() {
         return mPreference.getBoolean(Constant.KEY_RECEIVER, false);
     }
 
-    public String getEmailServicer(){
-        return mPreference.getString(Constant.KEY_EMAIL_SERVICER,Constant.EMAIL_SERVICER_QQ);
-    }
-    public void setEmailServicer(String servicer){
-        mPreference.edit().putString(Constant.KEY_EMAIL_SERVICER,servicer).apply();
+    public String getEmailServicer() {
+        return mPreference.getString(Constant.KEY_EMAIL_SERVICER, Constant.EMAIL_SERVICER_QQ);
     }
 
-    public void setEmailAccount(String account){
-        mPreference.edit().putString(Constant.KEY_EMAIL_ACCOUNT,account).apply();
+    public void setEmailServicer(String servicer) {
+        mPreference.edit().putString(Constant.KEY_EMAIL_SERVICER, servicer).apply();
     }
 
-    public String getEmailAccount(){
-        return mPreference.getString(Constant.KEY_EMAIL_ACCOUNT,null);
+    public void setEmailAccount(String account) {
+        mPreference.edit().putString(Constant.KEY_EMAIL_ACCOUNT, account).apply();
     }
 
-    public void setEmailPassword(String password){
-        mPreference.edit().putString(Constant.KEY_EMAIL_PASSWORD,password).apply();
-    }
-    public String getEmailPassword(){
-        return mPreference.getString(Constant.KEY_EMAIL_PASSWORD,null);
+    public String getEmailAccount() {
+        return mPreference.getString(Constant.KEY_EMAIL_ACCOUNT, null);
     }
 
-    public void setEmailHost(String address){
-        mPreference.edit().putString(Constant.KEY_EMAIL_HOST,address).apply();
-    }
-    public void setEmailPort(String port){
-        mPreference.edit().putString(Constant.KEY_EMAIL_PORT,port).apply();
+    public void setEmailPassword(String password) {
+        mPreference.edit().putString(Constant.KEY_EMAIL_PASSWORD, password).apply();
     }
 
-    public String getEmailHost(){
-        return mPreference.getString(Constant.KEY_EMAIL_HOST,null);
+    public String getEmailPassword() {
+        return mPreference.getString(Constant.KEY_EMAIL_PASSWORD, null);
     }
 
-    public String getEmailPort(){
-        return mPreference.getString(Constant.KEY_EMAIL_PORT,null);
+    public void setEmailHost(String address) {
+        mPreference.edit().putString(Constant.KEY_EMAIL_HOST, address).apply();
     }
 
-    public void setEmailSsl(Boolean b){
-        mPreference.edit().putBoolean(Constant.KEY_EMAIL_SSL,b).apply();
+    public void setEmailPort(String port) {
+        mPreference.edit().putString(Constant.KEY_EMAIL_PORT, port).apply();
     }
 
-    public Boolean getEmailSsl(){
-        return mPreference.getBoolean(Constant.KEY_EMAIL_SSL,false);
+    public String getEmailHost() {
+        return mPreference.getString(Constant.KEY_EMAIL_HOST, null);
     }
 
-    public void setEmailToAccount(String account){
-        mPreference.edit().putString(Constant.KEY_EMAIL_TO_ACCOUNT,account).apply();
+    public String getEmailPort() {
+        return mPreference.getString(Constant.KEY_EMAIL_PORT, null);
     }
 
-    public String getEmailToAccount(){
-        return mPreference.getString(Constant.KEY_EMAIL_TO_ACCOUNT,null);
+    public void setEmailSsl(Boolean b) {
+        mPreference.edit().putBoolean(Constant.KEY_EMAIL_SSL, b).apply();
     }
 
-    public void setEmailSenderName(String name){
-        mPreference.edit().putString(Constant.KEY_EMAIL_SENDER_NAME,name).apply();
+    public Boolean getEmailSsl() {
+        return mPreference.getBoolean(Constant.KEY_EMAIL_SSL, false);
     }
 
-    public String getEmailSenderName(){
-        return mPreference.getString(Constant.KEY_EMAIL_SENDER_NAME,"王亮");
+    public void setEmailToAccount(String account) {
+        mPreference.edit().putString(Constant.KEY_EMAIL_TO_ACCOUNT, account).apply();
     }
 
-    public void setEmailSubject(String subject){
-        mPreference.edit().putString(Constant.KEY_EMAIL_SUBJECT,subject).apply();
+    public String getEmailToAccount() {
+        return mPreference.getString(Constant.KEY_EMAIL_TO_ACCOUNT, null);
     }
 
-    public String getEmailSubject(){
-        return mPreference.getString(Constant.KEY_EMAIL_SUBJECT,"周工作总结");
+    public void setEmailSenderName(String name) {
+        mPreference.edit().putString(Constant.KEY_EMAIL_SENDER_NAME, name).apply();
+    }
+
+    public String getEmailSenderName() {
+        return mPreference.getString(Constant.KEY_EMAIL_SENDER_NAME, "短信助手");
+    }
+
+    public void setEmailSubject(String subject) {
+        mPreference.edit().putString(Constant.KEY_EMAIL_SUBJECT, subject).apply();
+    }
+
+    public String getEmailSubject() {
+        return mPreference.getString(Constant.KEY_EMAIL_SUBJECT, "短信转发");
+    }
+
+    public String getRuleKeyWord(){
+        return mPreference.getString(Constant.KEY_RULE_KEYWORD,null);
+    }
+    public String getRuleMobile(){
+        return mPreference.getString(Constant.KEY_RULE_MOBILE,null);
+    }
+    public void setRuleMobile(String mobile){
+        mPreference.edit().putString(Constant.KEY_RULE_MOBILE,mobile).apply();
+    }
+    public void setRuleKeyWord(String keyword){
+        mPreference.edit().putString(Constant.KEY_RULE_KEYWORD,keyword).apply();
     }
 }

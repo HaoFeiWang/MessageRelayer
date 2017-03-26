@@ -5,10 +5,10 @@ import android.content.Intent;
 import android.os.IBinder;
 import android.telephony.SmsManager;
 
-import com.whf.messagerelayer.bean.EmailMessage;
 import com.whf.messagerelayer.confing.Constant;
-import com.whf.messagerelayer.utils.EmailManager;
+import com.whf.messagerelayer.utils.EmailRelayerManager;
 import com.whf.messagerelayer.utils.NativeDataManager;
+import com.whf.messagerelayer.utils.SmsRelayerManager;
 
 public class SmsService extends IntentService {
 
@@ -31,23 +31,12 @@ public class SmsService extends IntentService {
         String mobile = intent.getStringExtra(Constant.EXTRA_MESSAGE_MOBILE);
 
         if (mNativeDataManager.getSmsRelay()) {
-            relaySms(mNativeDataManager.getObjectMobile(), content);
+            SmsRelayerManager.relaySms(mNativeDataManager.getObjectMobile(), content);
+        }else if(mNativeDataManager.getSmsProxyRelay()){
+            //SmsRelayerManager.realySmsProxy();
         }
         if (mNativeDataManager.getEmailRelay()) {
-            EmailManager.relayEmail(mNativeDataManager,content);
-        }
-    }
-
-    /**
-     * 发送短信至目标手机号
-     *
-     * @param objectMobile 目标手机号
-     * @param content      短信内容
-     */
-    private void relaySms(String objectMobile, String content) {
-        if (objectMobile != null) {
-            SmsManager smsManager = SmsManager.getDefault();
-            smsManager.sendTextMessage(objectMobile, null, content, null, null);
+            EmailRelayerManager.relayEmail(mNativeDataManager, content);
         }
     }
 

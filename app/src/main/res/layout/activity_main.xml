@@ -1,77 +1,88 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/activity_main"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:padding="16dp"
-    tools:context="com.whf.messagerelayer.activity.MainActivity">
-    <LinearLayout
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:background="#FC6621"
+        android:layout_margin="10dp">
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="60dp"
+            android:layout_marginLeft="20dp"
+            android:layout_centerVertical="true"
+            android:src="@drawable/setting_pro"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginRight="30dp"
+            android:layout_marginBottom="20dp"
+            android:text="配置转发规则"
+            android:textSize="18sp"
+            android:textColor="@android:color/white"/>
+    </RelativeLayout>
+
+    <RelativeLayout
         android:id="@+id/sms_relay_layout"
         android:layout_width="match_parent"
-        android:layout_height="25dp"
-        android:layout_marginTop="10dp"
-        android:orientation="horizontal">
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:src="@mipmap/icon_sms"/>
+        android:layout_height="100dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginBottom="10dp"
+        android:background="#2980b9">
+
         <TextView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:gravity="center_vertical"
-            android:layout_marginLeft="15dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginRight="30dp"
+            android:layout_marginBottom="20dp"
             android:text="转发至短信"
-            android:textColor="@android:color/black"
-            android:textSize="15sp"/>
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:gravity="center_vertical"
-            android:text="关闭"
-            android:textSize="12sp"/>
+            android:textSize="18sp"
+            android:textColor="@android:color/white"
+            android:id="@+id/textView"/>
+
         <ImageView
             android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_gravity="center_vertical"
-            android:paddingTop="5dp"
-            android:paddingBottom="5dp"
-            android:src="@mipmap/icon_skip"/>
-    </LinearLayout>
-    <LinearLayout
+            android:layout_height="60dp"
+            android:layout_marginLeft="20dp"
+            android:src="@drawable/sms_image"
+            android:layout_alignBottom="@+id/textView"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_marginStart="27dp"
+            android:id="@+id/imageView"/>
+    </RelativeLayout>
+
+    <RelativeLayout
         android:id="@+id/email_relay_layout"
         android:layout_width="match_parent"
-        android:orientation="horizontal"
-        android:layout_height="25dp"
-        android:layout_marginTop="20dp">
+        android:layout_height="100dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:background="#27ae60">
         <ImageView
             android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:src="@mipmap/icon_emai"/>
+            android:layout_height="60dp"
+            android:layout_marginLeft="20dp"
+            android:layout_centerVertical="true"
+            android:src="@drawable/email_image"/>
         <TextView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:gravity="center_vertical"
-            android:layout_marginLeft="15dp"
+            android:id="@+id/text_email_tip"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginRight="30dp"
+            android:layout_marginBottom="20dp"
             android:text="转发至邮件"
-            android:textColor="@android:color/black"
-            android:textSize="15sp"/>
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:gravity="center_vertical"
-            android:text="关闭"
-            android:textSize="12sp"/>
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_gravity="center_vertical"
-            android:paddingTop="5dp"
-            android:paddingBottom="5dp"
-            android:src="@mipmap/icon_skip"/>
-    </LinearLayout>
+            android:textSize="18sp"
+            android:textColor="@android:color/white"/>
+    </RelativeLayout>
 </LinearLayout>

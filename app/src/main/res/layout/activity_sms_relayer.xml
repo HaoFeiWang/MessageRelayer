@@ -17,8 +17,9 @@
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:gravity="center_vertical"
-            android:text="使用花费发送"
-            android:textSize="17sp"/>
+            android:text="使用话费发送"
+            android:textSize="17sp"
+            android:textColor="@color/colorDarkText"/>
         <Switch
             android:id="@+id/switch_sms"
             android:layout_width="wrap_content"
@@ -44,7 +45,8 @@
             android:layout_height="match_parent"
             android:gravity="center_vertical"
             android:text="指定手机号"
-            android:textSize="17sp"/>
+            android:textSize="17sp"
+            android:textColor="@color/colorDarkText"/>
         <TextView
             android:id="@+id/text_mobile"
             android:layout_width="wrap_content"
@@ -52,7 +54,8 @@
             android:layout_alignParentRight="true"
             android:gravity="center_vertical"
             android:text="18409209558"
-            android:textSize="15sp"/>
+            android:textSize="15sp"
+            android:textColor="@color/colorLightText"/>
     </RelativeLayout>
 
     <RelativeLayout
@@ -66,7 +69,8 @@
             android:layout_height="match_parent"
             android:gravity="center_vertical"
             android:text="使用流量发送"
-            android:textSize="17sp"/>
+            android:textSize="17sp"
+            android:textColor="@color/colorDarkText"/>
         <Switch
             android:id="@+id/switch_sms_proxy"
             android:layout_width="wrap_content"

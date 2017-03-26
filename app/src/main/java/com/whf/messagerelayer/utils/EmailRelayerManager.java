@@ -18,7 +18,7 @@ import javax.mail.internet.MimeMessage;
  * Created by WHF on 2017/3/25.
  */
 
-public class EmailManager {
+public class EmailRelayerManager {
 
     public static final int CODE_SUCCESS = 0x1;
     public static final int CODE_FAILE = 0x0;

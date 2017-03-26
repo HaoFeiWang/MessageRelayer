@@ -16,17 +16,18 @@ import android.widget.Switch;
 import android.widget.TextView;
 
 import com.whf.messagerelayer.R;
-import com.whf.messagerelayer.bean.EmailMessage;
 import com.whf.messagerelayer.confing.Constant;
-import com.whf.messagerelayer.utils.EmailManager;
+import com.whf.messagerelayer.utils.EmailRelayerManager;
 import com.whf.messagerelayer.utils.NativeDataManager;
 
 public class EmailRelayerActivity extends AppCompatActivity implements
         CompoundButton.OnCheckedChangeListener,View.OnClickListener{
 
     private Switch mEmailSwitch,mSslSwitch;
-    private RelativeLayout mLayoutAccount,mLayoutServicer,mLayoutAddress,mLayoutPort,mLayoutToAccount;
-    private TextView mTextAccount,mTextServicer,mTextAddress,mTextPort,mTextToAccount;
+    private RelativeLayout mLayoutAccount,mLayoutServicer,mLayoutAddress,mLayoutPort
+            ,mLayoutToAccount,mLayoutSenderName,mLayoutSubject;
+    private TextView mTextAccount,mTextServicer,mTextAddress,mTextPort,mTextToAccount
+            ,mTextSenderName,mTextSubject;
     private View mAddressLine,mPortLine;
 
     private NativeDataManager mNativeDataManager;
@@ -45,24 +46,39 @@ public class EmailRelayerActivity extends AppCompatActivity implements
     private void initData() {
         String servecer = mNativeDataManager.getEmailServicer();
         if(servecer.equals(Constant.EMAIL_SERVICER_OTHER)){
-            mLayoutAddress.setVisibility(View.VISIBLE);
-            mLayoutPort.setVisibility(View.VISIBLE);
-            mAddressLine.setVisibility(View.VISIBLE);
-            mPortLine.setVisibility(View.VISIBLE);
-            mTextAddress.setText(mNativeDataManager.getEmailHost());
-            mTextPort.setText(mNativeDataManager.getEmailPort());
+            setAddressVisiable();
         }else{
-            mLayoutAddress.setVisibility(View.GONE);
-            mLayoutPort.setVisibility(View.GONE);
-            mAddressLine.setVisibility(View.GONE);
-            mPortLine.setVisibility(View.GONE);
+            setAddressGone();
         }
         mEmailSwitch.setChecked(mNativeDataManager.getEmailRelay());
         mSslSwitch.setChecked(mNativeDataManager.getEmailSsl());
         mTextServicer.setText(servecer);
         mTextAccount.setText(mNativeDataManager.getEmailAccount());
         mTextToAccount.setText(mNativeDataManager.getEmailToAccount());
+        mTextSenderName.setText(mNativeDataManager.getEmailSenderName());
+        mTextSubject.setText(mNativeDataManager.getEmailSubject());
+    }
 
+    /**
+     * 显示服务器和端口的设置
+     */
+    private void setAddressVisiable() {
+        mLayoutAddress.setVisibility(View.VISIBLE);
+        mLayoutPort.setVisibility(View.VISIBLE);
+        mAddressLine.setVisibility(View.VISIBLE);
+        mPortLine.setVisibility(View.VISIBLE);
+        mTextAddress.setText(mNativeDataManager.getEmailHost());
+        mTextPort.setText(mNativeDataManager.getEmailPort());
+    }
+
+    /**
+     * 隐藏服务器和端口设置的
+     */
+    private void setAddressGone() {
+        mLayoutAddress.setVisibility(View.GONE);
+        mLayoutPort.setVisibility(View.GONE);
+        mAddressLine.setVisibility(View.GONE);
+        mPortLine.setVisibility(View.GONE);
     }
 
     private void initView(){
@@ -74,12 +90,16 @@ public class EmailRelayerActivity extends AppCompatActivity implements
         mLayoutAddress = (RelativeLayout) findViewById(R.id.layout_address);
         mLayoutPort = (RelativeLayout) findViewById(R.id.layout_port);
         mLayoutToAccount = (RelativeLayout) findViewById(R.id.layout_to_account);
+        mLayoutSenderName = (RelativeLayout) findViewById(R.id.layout_sender_name);
+        mLayoutSubject = (RelativeLayout) findViewById(R.id.layout_subject);
 
         mTextServicer = (TextView) findViewById(R.id.text_servicer);
         mTextAccount = (TextView) findViewById(R.id.text_account);
         mTextAddress = (TextView) findViewById(R.id.text_address);
         mTextPort = (TextView) findViewById(R.id.text_port);
         mTextToAccount = (TextView) findViewById(R.id.text_to_account);
+        mTextSenderName = (TextView) findViewById(R.id.text_sender_name);
+        mTextSubject = (TextView) findViewById(R.id.text_subject);
 
         mAddressLine = findViewById(R.id.line_address);
         mPortLine = findViewById(R.id.line_port);
@@ -91,6 +111,8 @@ public class EmailRelayerActivity extends AppCompatActivity implements
         mLayoutAddress.setOnClickListener(this);
         mLayoutPort.setOnClickListener(this);
         mLayoutToAccount.setOnClickListener(this);
+        mLayoutSenderName.setOnClickListener(this);
+        mLayoutSubject.setOnClickListener(this);
 
         mEmailSwitch.setOnCheckedChangeListener(this);
         mSslSwitch.setOnCheckedChangeListener(this);
@@ -126,7 +148,67 @@ public class EmailRelayerActivity extends AppCompatActivity implements
             case R.id.layout_to_account:
                 showToAccountDialog();
                 break;
+            case R.id.layout_sender_name:
+                showSenderNameDialog();
+                break;
+            case R.id.layout_subject:
+                showSubjectDialog();
+                break;
         }
+    }
+
+    private void showSubjectDialog() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        View view = LayoutInflater.from(this).inflate(R.layout.dialog_edit,null,false);
+        TextView textViewTitle = (TextView) view.findViewById(R.id.dialog_title);
+        final EditText editText = (EditText) view.findViewById(R.id.dialog_edit);
+
+        textViewTitle.setText("请输入邮件主题");
+        editText.setText(mNativeDataManager.getEmailSubject());
+        builder.setView(view);
+
+        builder.setPositiveButton("确定", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                mNativeDataManager.setEmailSubject(editText.getText().toString());
+                mTextAddress.setText(editText.getText().toString());
+            }
+        });
+
+        builder.setNegativeButton("取消", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+
+            }
+        });
+        builder.show();
+    }
+
+    private void showSenderNameDialog() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        View view = LayoutInflater.from(this).inflate(R.layout.dialog_edit,null,false);
+        TextView textViewTitle = (TextView) view.findViewById(R.id.dialog_title);
+        final EditText editText = (EditText) view.findViewById(R.id.dialog_edit);
+
+        textViewTitle.setText("请输入发送方名称");
+        editText.setText(mNativeDataManager.getEmailSenderName());
+        builder.setView(view);
+
+        builder.setPositiveButton("确定", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                mNativeDataManager.setEmailSenderName(editText.getText().toString());
+                mTextAddress.setText(editText.getText().toString());
+            }
+        });
+
+        builder.setNegativeButton("取消", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+
+            }
+        });
+        builder.show();
     }
 
     private void showServicerDialog(){
@@ -143,31 +225,37 @@ public class EmailRelayerActivity extends AppCompatActivity implements
                         mNativeDataManager.setEmailServicer(Constant.EMAIL_SERVICER_126);
                         mTextServicer.setText("126邮箱");
                         dialog.cancel();
+                        setAddressGone();
                         break;
                     case R.id.text_163_email:
                         mNativeDataManager.setEmailServicer(Constant.EMAIL_SERVICER_163);
                         mTextServicer.setText("163邮箱");
                         dialog.cancel();
+                        setAddressGone();
                         break;
                     case R.id.text_gmail_email:
                         mNativeDataManager.setEmailServicer(Constant.EMAIL_SERVICER_GMAIL);
                         mTextServicer.setText("Gmail");
                         dialog.cancel();
+                        setAddressGone();
                         break;
                     case R.id.text_other_email:
                         mNativeDataManager.setEmailServicer(Constant.EMAIL_SERVICER_OTHER);
                         mTextServicer.setText("其他邮箱");
                         dialog.cancel();
+                        setAddressVisiable();
                         break;
                     case R.id.text_qq_email:
                         mNativeDataManager.setEmailServicer(Constant.EMAIL_SERVICER_QQ);
                         mTextServicer.setText("QQ邮箱");
                         dialog.cancel();
+                        setAddressGone();
                         break;
                     case R.id.text_outlook_email:
                         mNativeDataManager.setEmailServicer(Constant.EMAIL_SERVICER_OUTLOOK);
                         mTextServicer.setText("OutLook");
                         dialog.cancel();
+                        setAddressGone();
                         break;
                 }
             }
@@ -303,12 +391,12 @@ public class EmailRelayerActivity extends AppCompatActivity implements
                     @Override
                     protected Integer doInBackground(Void... params) {
                         Log.e("::::::::::","开始发送");
-                        return EmailManager.relayEmail(mNativeDataManager,"这周任务完成不错");
+                        return EmailRelayerManager.relayEmail(mNativeDataManager,"配置正确！");
                     }
                     @Override
                     protected void onPostExecute(Integer integer) {
                         progressDialog.cancel();
-                        if(integer==EmailManager.CODE_SUCCESS){
+                        if(integer== EmailRelayerManager.CODE_SUCCESS){
                             mNativeDataManager.setEmailToAccount(editText.getText().toString());
                             mTextToAccount.setText(editText.getText());
                             Log.e("::::::::::","发送成功");
