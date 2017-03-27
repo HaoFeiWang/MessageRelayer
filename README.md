@@ -1,5 +1,9 @@
 # 短信转发工具
 ## 截图展示
+![首页](https://github.com/HaoFeiWang/MessageRelayer/blob/master/screen/screen_main.jpg)
+![转发至短信](https://github.com/HaoFeiWang/MessageRelayer/blob/master/screen/screen_email.jpg)
+![转发至邮件](https://github.com/HaoFeiWang/MessageRelayer/blob/master/screen/screen_sms.jpg)
+
 ## 功能概述
 ### 自动转发短信至目标手机号
 只需开启转发转发至短信，并且设置目标手机号就可实现自动转发（如图1）
