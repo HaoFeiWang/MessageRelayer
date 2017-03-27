@@ -21,4 +21,5 @@
 - 在部分深度定制的机型上手动杀死后无法复活（小米、魅族）。
 
 如果觉得我的文章对您有用，请随意打赏。您的支持将鼓励我继续创作！
+
 ![捐赠](https://github.com/HaoFeiWang/MessageRelayer/blob/master/screen/contribution.jpg)
