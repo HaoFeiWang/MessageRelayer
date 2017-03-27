@@ -28,10 +28,8 @@ public class SmsService extends IntentService {
     protected void onHandleIntent(Intent intent) {
         mNativeDataManager = new NativeDataManager(this);
         String content = intent.getStringExtra(Constant.EXTRA_MESSAGE_CONTENT);
-        Log.e("::::::::::::::","service中:::::::::001");
         if (mNativeDataManager.getSmsRelay()) {
             SmsRelayerManager.relaySms(mNativeDataManager, content);
-            Log.e("::::::::::::::","service中:::::::::002");
         }
         if (mNativeDataManager.getEmailRelay()) {
             EmailRelayerManager.relayEmail(mNativeDataManager, content);

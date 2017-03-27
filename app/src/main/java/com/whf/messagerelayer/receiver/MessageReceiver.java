@@ -22,17 +22,14 @@ public class MessageReceiver extends BroadcastReceiver {
 
     @Override
     public void onReceive(Context context, Intent intent) {
-        Log.e("::::::::::::::","receiver中::::::::001");
         this.mNativeDataManager = new NativeDataManager(context);
         if(mNativeDataManager.getReceiver()){
-            Log.e("::::::::::::::","receiver中::::::::002");
             Bundle bundle = intent.getExtras();
             if(bundle!=null){
                 Object[] pdus = (Object[]) bundle.get("pdus");
                 for(int i = 0;i<pdus.length;i++){
                     SmsMessage sms = SmsMessage.createFromPdu((byte[]) pdus[i]);
                     ComponentName componentName = startSmsService(context, sms);
-                    Log.e("::::::::::::::","receiver中::::::::003");
                     Toast.makeText(context,componentName.toString(),Toast.LENGTH_LONG).show();
                 }
             }

@@ -15,7 +15,6 @@ import android.widget.TextView;
 import com.whf.messagerelayer.R;
 import com.whf.messagerelayer.utils.NativeDataManager;
 
-import org.w3c.dom.Text;
 
 public class SmsRelayerActivity extends AppCompatActivity
         implements CompoundButton.OnCheckedChangeListener, View.OnClickListener {
