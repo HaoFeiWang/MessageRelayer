@@ -40,7 +40,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 startActivity(new Intent(this,EmailRelayerActivity.class));
                 break;
             case R.id.rule_layout:
-                startActivity(new Intent(this,RuleActivity.class));
+                startActivity(new Intent(this,SelectedContactActivity.class));
         }
     }
 }

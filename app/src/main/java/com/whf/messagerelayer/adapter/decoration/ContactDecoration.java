@@ -1,4 +1,4 @@
-package com.whf.messagerelayer.adapter;
+package com.whf.messagerelayer.adapter.decoration;
 
 import android.graphics.Canvas;
 import android.graphics.Color;
@@ -12,11 +12,11 @@ import android.view.View;
  * Created by WHF on 2017/3/28.
  */
 
-public class ContactListDecoration extends RecyclerView.ItemDecoration {
+public class ContactDecoration extends RecyclerView.ItemDecoration {
 
     private static final int WIDTH = 1;
     private static final int LINE_COLOR = 0xFFCCCACA;
-    public ContactListDecoration() {
+    public ContactDecoration() {
         super();
     }
 

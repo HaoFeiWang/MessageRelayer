@@ -50,6 +50,8 @@
         </activity>
         <activity android:name=".activity.ContactListActivity">
         </activity>
+        <activity android:name=".activity.SelectedContactActivity">
+        </activity>
     </application>
 
 </manifest>

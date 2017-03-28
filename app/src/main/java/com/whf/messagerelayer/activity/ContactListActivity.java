@@ -6,12 +6,10 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.view.View;
-import android.widget.ImageView;
 
 import com.whf.messagerelayer.R;
-import com.whf.messagerelayer.adapter.ContactListAdapter;
-import com.whf.messagerelayer.adapter.ContactListDecoration;
+import com.whf.messagerelayer.adapter.ContactAdapter;
+import com.whf.messagerelayer.adapter.decoration.ContactDecoration;
 import com.whf.messagerelayer.bean.Contact;
 import com.whf.messagerelayer.utils.ContactManager;
 
@@ -20,7 +18,7 @@ import java.util.ArrayList;
 public class ContactListActivity extends AppCompatActivity {
 
     private RecyclerView mContactList;
-    private ContactListAdapter mContactListAdapter;
+    private ContactAdapter mContactListAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,7 +30,7 @@ public class ContactListActivity extends AppCompatActivity {
     }
 
     private void initRecyclerView(){
-        mContactList.addItemDecoration(new ContactListDecoration());
+        mContactList.addItemDecoration(new ContactDecoration());
         mContactList.setLayoutManager(new LinearLayoutManager(this,LinearLayoutManager.VERTICAL,false));
         final ProgressDialog dialog = new ProgressDialog(this);
         new AsyncTask<Void,Void,ArrayList<Contact>>() {
@@ -49,7 +47,7 @@ public class ContactListActivity extends AppCompatActivity {
             @Override
             protected void onPostExecute(ArrayList<Contact> contacts) {
                 dialog.cancel();
-                mContactListAdapter = new ContactListAdapter(ContactListActivity.this,contacts);
+                mContactListAdapter = new ContactAdapter(ContactListActivity.this,contacts);
 
                 mContactList.setAdapter(mContactListAdapter);
             }

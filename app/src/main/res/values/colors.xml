@@ -7,4 +7,6 @@
     <color name="colorLine">#cccaca</color>
     <color name="colorDarkText">#292929</color>
     <color name="colorLightText">#7c7c7c</color>
+
+    <color name="colorButton">#27ae60</color>
 </resources>
