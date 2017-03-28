@@ -33,7 +33,7 @@ public class RuleActivity extends AppCompatActivity implements View.OnClickListe
     public void onClick(View v) {
         switch (v.getId()){
             case R.id.layout_rule_mobile:
-                startActivity(new Intent(this,ContactListActivity.class));
+                startActivity(new Intent(this,SelectedContactActivity.class));
                 break;
         }
     }

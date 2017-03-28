@@ -49,4 +49,25 @@ public class ContactManager {
         return mContactList;
     }
 
+
+    public static ArrayList<Contact> getContactList2(Context context){
+        ArrayList<Contact> mContactList = new ArrayList<>();
+
+        Cursor cursor = context.getContentResolver()
+                .query(ContactsContract.CommonDataKinds.Phone.CONTENT_URI
+                        ,null,null,null,null);
+        while (cursor.moveToNext()){
+            Contact contact = new Contact();
+            contact.setContactName(cursor.getString(cursor
+                    .getColumnIndex(ContactsContract.CommonDataKinds.Phone.DISPLAY_NAME)));
+
+            contact.setContactNum(cursor.getString(cursor
+                    .getColumnIndex(ContactsContract.CommonDataKinds.Phone.NUMBER)));
+
+            mContactList.add(contact);
+
+        }
+        return mContactList;
+    }
+
 }

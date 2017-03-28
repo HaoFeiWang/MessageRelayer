@@ -12,17 +12,18 @@ import com.whf.messagerelayer.bean.Contact;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.zip.Inflater;
 
 /**
  * Created by WHF on 2017/3/28.
  */
 
-public abstract class BaseContactListAdapter extends RecyclerView.Adapter<ContactHolder>{
+abstract class BaseContactAdapter extends RecyclerView.Adapter<ContactHolder>{
 
-    protected LayoutInflater mInflater;
-    protected List<Contact> mContactList;
+    LayoutInflater mInflater;
+    List<Contact> mContactList;
 
-    public BaseContactListAdapter(Context context, List<Contact> contactList) {
+    BaseContactAdapter(Context context, List<Contact> contactList) {
         if (contactList == null) {
             this.mContactList = new ArrayList<>();
         } else {
@@ -33,7 +34,7 @@ public abstract class BaseContactListAdapter extends RecyclerView.Adapter<Contac
 
     @Override
     public ContactHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View view = mInflater.inflate(R.layout.item_contact, parent, false);
+        View view = getItemView(mInflater,parent);
         ContactHolder holder = new ContactHolder(view);
         return holder;
     }
@@ -47,10 +48,13 @@ public abstract class BaseContactListAdapter extends RecyclerView.Adapter<Contac
         onItemClick(contact,holder);
     }
 
-    protected abstract void onItemClick(Contact contact,ContactHolder holder);
-
     @Override
     public int getItemCount() {
         return mContactList.size();
     }
+
+    protected abstract void onItemClick(Contact contact,ContactHolder holder);
+    protected abstract View getItemView(LayoutInflater inflater,ViewGroup parent);
+
+
 }

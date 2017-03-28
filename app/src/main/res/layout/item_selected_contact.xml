@@ -11,23 +11,22 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textSize="16sp"
-        android:text="王伟"
         android:textColor="@color/colorDarkText"/>
 
     <TextView
         android:id="@+id/text_contact_num"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="5dp"
+        android:paddingTop="2dp"
         android:layout_below="@+id/text_contact_name"
         android:textSize="13sp"
-        android:text="18409209558"
         android:textColor="@color/colorLightText"/>
 
     <ImageView
         android:id="@+id/image_contact_selecter"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:padding="10dp"
         android:layout_alignParentRight="true"
         android:layout_centerVertical="true"
         android:layout_marginRight="15dp"

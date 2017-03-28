@@ -121,4 +121,12 @@ public class NativeDataManager {
         return mPreference.getString(Constant.KEY_EMAIL_SUBJECT, "短信转发");
     }
 
+    public Boolean getDatabaseFlag(){
+        return mPreference.getBoolean(Constant.DB_CONTACT_FLAG,true);
+    }
+
+    public void setDatabaseFlag(boolean flag){
+        mPreference.edit().putBoolean(Constant.DB_CONTACT_FLAG,flag).apply();
+    }
+
 }

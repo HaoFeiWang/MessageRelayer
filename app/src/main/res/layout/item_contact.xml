@@ -18,7 +18,7 @@
         android:id="@+id/text_contact_num"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="5dp"
+        android:layout_marginTop="2dp"
         android:layout_below="@+id/text_contact_name"
         android:textSize="13sp"
         android:textColor="@color/colorLightText"/>

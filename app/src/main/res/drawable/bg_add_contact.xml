@@ -2,4 +2,6 @@
 <shape xmlns:android="http://schemas.android.com/apk/res/android">
     <corners android:radius="5dp"/>
     <solid android:color="@color/colorButton"/>
+    <padding android:top="8dp"
+             android:bottom="8dp"/>
 </shape>
