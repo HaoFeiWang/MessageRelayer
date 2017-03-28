@@ -37,11 +37,15 @@
             android:exported="true">
         </service>
 
-        <activity android:name=".activity.SmsRelayerActivity"
+        <activity
+            android:name=".activity.SmsRelayerActivity"
             android:label="配置短信">
         </activity>
-        <activity android:name=".activity.EmailRelayerActivity"
+        <activity
+            android:name=".activity.EmailRelayerActivity"
             android:label="配置邮件">
+        </activity>
+        <activity android:name=".activity.RuleActivity">
         </activity>
     </application>
 
