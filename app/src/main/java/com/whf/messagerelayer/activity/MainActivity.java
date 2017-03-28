@@ -10,7 +10,7 @@ import com.whf.messagerelayer.R;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener{
 
-    private RelativeLayout mSmsLayout,mEmailLayout;
+    private RelativeLayout mSmsLayout,mEmailLayout,mRuleLayout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,9 +23,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private void initView(){
         mSmsLayout = (RelativeLayout) findViewById(R.id.sms_relay_layout);
         mEmailLayout = (RelativeLayout) findViewById(R.id.email_relay_layout);
+        mRuleLayout = (RelativeLayout) findViewById(R.id.rule_layout);
 
         mSmsLayout.setOnClickListener(this);
         mEmailLayout.setOnClickListener(this);
+        mRuleLayout.setOnClickListener(this);
     }
 
     @Override
@@ -37,6 +39,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             case R.id.email_relay_layout:
                 startActivity(new Intent(this,EmailRelayerActivity.class));
                 break;
+            case R.id.rule_layout:
+                startActivity(new Intent(this,RuleActivity.class));
         }
     }
 }

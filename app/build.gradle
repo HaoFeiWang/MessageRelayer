@@ -29,4 +29,5 @@ dependencies {
     compile 'com.sun.mail:android-mail:1.5.5'
     compile 'com.sun.mail:android-activation:1.5.5'
     compile 'com.squareup.okhttp3:okhttp:3.6.0'
+    compile 'com.android.support:recyclerview-v7:25.2.0'
 }

@@ -7,6 +7,7 @@
     <uses-permission android:name="android.permission.SEND_SMS"/>
     <uses-permission android:name="android.permission.READ_SMS"/>
     <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.READ_CONTACTS"/>
 
     <application
         android:allowBackup="true"
@@ -46,6 +47,8 @@
             android:label="配置邮件">
         </activity>
         <activity android:name=".activity.RuleActivity">
+        </activity>
+        <activity android:name=".activity.ContactListActivity">
         </activity>
     </application>
 
