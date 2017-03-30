@@ -8,5 +8,11 @@
     <color name="colorDarkText">#292929</color>
     <color name="colorLightText">#7c7c7c</color>
 
-    <color name="colorButton">#27ae60</color>
+    <color name="colorButtonGreen">#27ae60</color>
+    <color name="colorButtonWhite">#FFFFFF</color>
+
+    <color name="colorKeyBgFour">#FC4A1A</color>
+    <color name="colorKeyBgThree">#00C07F</color>
+    <color name="colorKeyBgTwo">#F7B733</color>
+    <color name="colorKeyBgOne">#00A6ED</color>
 </resources>

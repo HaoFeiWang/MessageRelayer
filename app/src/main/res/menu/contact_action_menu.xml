@@ -1,7 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<menu xmlns:android="http://schemas.android.com/apk/res/android">
-    <item android:id="@+id/update"
-        android:title="保存"/>
-    <item android:id="@+id/serch"
-          android:title="查找"/>
-</menu>

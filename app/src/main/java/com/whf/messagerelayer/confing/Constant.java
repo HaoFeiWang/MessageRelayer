@@ -9,6 +9,7 @@ public class Constant {
     //Intent传值的Extra名
     public static final String EXTRA_MESSAGE_CONTENT = "content";
     public static final String EXTRA_MESSAGE_MOBILE = "mobile";
+    public static final String EXTRA_DATA_CHANGE = "updata";
 
     //SharedPreference的文件名
     public static final String SETTING_FILE_NAME = "settingConf";
@@ -45,12 +46,18 @@ public class Constant {
     public static final String EMAIL_SERVICER_OTHER = "其他邮箱";
 
 
+    //数据库配置
     public static final String DB_TABLE_NAME = "contact";
     public static final String DB_KEY_ID = "id";
     public static final String DB_KEY_NAME = "name";
     public static final String DB_KEY_MOBLIE = "mobile";
     public static final String DB_KEY_SELECTED = "selected";
 
-    public static final String DB_CONTACT_FLAG = "contact_flag";
+    //关键字的列表
+    public static final String KEY_KEYWORD_LIST = "keyword";
+
+    //前缀和后缀
+    public static final String KEY_CONTENT_PREFIX = "prefix";
+    public static final String KEY_CONTENT_SUFFIX = "suffix";
 
 }

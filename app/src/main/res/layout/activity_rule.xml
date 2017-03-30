@@ -29,6 +29,7 @@
             android:textSize="17sp"
             android:textColor="@color/colorDarkText"/>
         <ImageView
+            android:id="@+id/image_skip_mobile"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_alignParentRight="true"
@@ -41,6 +42,7 @@
         android:layout_marginRight="15dp"
         android:background="@color/colorLine"/>
     <RelativeLayout
+        android:id="@+id/layout_rule_keyword"
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:padding="15dp"
@@ -53,63 +55,13 @@
             android:textSize="17sp"
             android:textColor="@color/colorDarkText"/>
         <ImageView
+            android:id="@+id/image_skip_keyword"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_alignParentRight="true"
             android:src="@mipmap/ic_skip"/>
     </RelativeLayout>
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="5dp"
-        android:layout_marginLeft="15dp"
-        android:layout_marginTop="20dp"
-        android:text="转发渠道"
-        android:textSize="10sp"/>
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:paddingLeft="15dp"
-        android:paddingRight="15dp"
-        android:background="@android:color/white">
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:gravity="center_vertical"
-            android:text="转发至手机"
-            android:textSize="15sp"
-            android:textColor="@color/colorDarkText"/>
-        <Switch
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerVertical="true"
-            android:layout_alignParentRight="true"/>
-    </RelativeLayout>
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="0.1dp"
-        android:layout_marginLeft="15dp"
-        android:layout_marginRight="15dp"
-        android:background="@color/colorLine"/>
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:paddingLeft="15dp"
-        android:paddingRight="15dp"
-        android:background="@android:color/white">
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:gravity="center_vertical"
-            android:text="转发至邮件"
-            android:textSize="15sp"
-            android:textColor="@color/colorDarkText"/>
-        <Switch
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerVertical="true"
-            android:layout_alignParentRight="true"/>
-    </RelativeLayout>
+
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -119,6 +71,7 @@
         android:text="内容定制"
         android:textSize="10sp"/>
     <RelativeLayout
+        android:id="@+id/layout_rule_prefix"
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:padding="15dp"
@@ -132,6 +85,15 @@
             android:textSize="17sp"
             android:textColor="@color/colorDarkText"
             android:layout_alignParentLeft="true"/>
+        <TextView
+            android:id="@+id/text_prefix"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_alignParentRight="true"
+            android:gravity="center_vertical"
+            android:text="点击设置"
+            android:textColor="@color/colorLightText"
+            android:textSize="13sp"/>
     </RelativeLayout>
     <View
         android:layout_width="match_parent"
@@ -140,6 +102,7 @@
         android:layout_marginRight="15dp"
         android:background="@color/colorLine"/>
     <RelativeLayout
+        android:id="@+id/layout_rule_suffix"
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:padding="15dp"
@@ -151,5 +114,14 @@
             android:text="内容后缀"
             android:textSize="17sp"
             android:textColor="@color/colorDarkText"/>
+        <TextView
+            android:id="@+id/text_suffix"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_alignParentRight="true"
+            android:gravity="center_vertical"
+            android:text="点击设置"
+            android:textColor="@color/colorLightText"
+            android:textSize="13sp"/>
     </RelativeLayout>
 </LinearLayout>

@@ -9,7 +9,6 @@ import android.view.ViewGroup;
 import com.whf.messagerelayer.R;
 import com.whf.messagerelayer.adapter.holder.ContactHolder;
 import com.whf.messagerelayer.bean.Contact;
-import com.whf.messagerelayer.utils.db.DataBaseManager;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -18,21 +17,20 @@ import java.util.List;
  * Created by WHF on 2017/3/28.
  */
 
-public class ContactSelectedAdapter extends RecyclerView.Adapter<ContactHolder> {
+public class ContactListAdapter extends RecyclerView.Adapter<ContactHolder> {
 
     private LayoutInflater mInflater;
-    private List<Contact> mSelectedList;
-    private Context mContext;
+    private List<Contact> mContactList;
+    private ArrayList<Contact> mSelectedList = null;
 
-    public ContactSelectedAdapter(Context context, List<Contact> seletedList) {
-        this.mContext = context;
+    public ContactListAdapter(Context context, List<Contact> contactList) {
         this.mInflater = LayoutInflater.from(context);
-        this.mSelectedList = seletedList;
+        this.mContactList = contactList;
+        this.mSelectedList = new ArrayList<>();
     }
 
-
     private View getItemView(LayoutInflater inflater, ViewGroup parent) {
-        return inflater.inflate(R.layout.item_selected_contact,parent,false);
+        return inflater.inflate(R.layout.item_contact,parent,false);
     }
 
     @Override
@@ -44,17 +42,24 @@ public class ContactSelectedAdapter extends RecyclerView.Adapter<ContactHolder> 
 
     @Override
     public void onBindViewHolder(ContactHolder holder, int position) {
-        final Contact contact = mSelectedList.get(position);
+        final Contact contact = mContactList.get(position);
         holder.mContactName.setText(contact.getContactName());
         holder.mContactNum.setText(contact.getContactNum());
-
-        holder.mRightIcon.setOnClickListener(new View.OnClickListener() {
+        if(contact.getSelected()==1){
+            holder.mRightIcon.setImageResource(R.mipmap.ic_selected);
+        }else {
+            holder.mRightIcon.setImageResource(R.mipmap.ic_unselected);
+        }
+        holder.mItemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                DataBaseManager dataBaseManager = new DataBaseManager(mContext);
-                dataBaseManager.deleteContactFromMobile(contact.getContactNum());
-                mSelectedList.remove(contact);
-                dataBaseManager.closeHelper();
+                if(contact.getSelected()==1){
+                    contact.setSelected(0);
+                    mSelectedList.remove(contact);
+                }else{
+                    contact.setSelected(1);
+                    mSelectedList.add(contact);
+                }
                 notifyDataSetChanged();
             }
         });
@@ -62,15 +67,10 @@ public class ContactSelectedAdapter extends RecyclerView.Adapter<ContactHolder> 
 
     @Override
     public int getItemCount() {
-        return mSelectedList.size();
+        return mContactList.size();
     }
 
-    /**
-     * 外部调用的更新数据
-     * @param contactList
-     */
-    public void notifyUpdata(List<Contact> contactList){
-        mSelectedList = contactList;
-        notifyDataSetChanged();
+    public ArrayList<Contact> getSelectedList(){
+        return mSelectedList;
     }
 }

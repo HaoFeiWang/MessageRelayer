@@ -13,6 +13,7 @@ import java.util.List;
 
 
 /**
+ * 存储被选中的联系人的数据库管理类
  * Created by WHF on 2017/3/28.
  */
 
@@ -35,7 +36,6 @@ public class DataBaseManager {
         ContentValues values = new ContentValues();
         values.put(Constant.DB_KEY_NAME, contact.getContactName());
         values.put(Constant.DB_KEY_MOBLIE, contact.getContactNum());
-        values.put(Constant.DB_KEY_SELECTED, contact.getSelected());
         database.insert(Constant.DB_TABLE_NAME, null, values);
     }
 
@@ -50,23 +50,6 @@ public class DataBaseManager {
             values.put(Constant.DB_KEY_NAME, contact.getContactName());
             values.put(Constant.DB_KEY_MOBLIE, contact.getContactNum());
             database.insert(Constant.DB_TABLE_NAME, null, values);
-        }
-    }
-
-    /**
-     * 获取所有被选中的联系人
-     */
-    public void getSelectedContact() {
-        ArrayList<Contact> contactList = new ArrayList<>();
-        SQLiteDatabase database = mHelper.getReadableDatabase();
-        Cursor cursor = database.query(Constant.DB_TABLE_NAME
-                , null, Constant.DB_KEY_SELECTED + "=" + "true", null, null, null, null);
-        while (cursor.moveToNext()) {
-            Contact contact = new Contact();
-            contact.setContactName(cursor.getString(cursor.getColumnIndex(Constant.DB_KEY_NAME)));
-            contact.setContactNum(cursor.getString(cursor.getColumnIndex(Constant.DB_KEY_MOBLIE)));
-            contact.setSelected(cursor.getInt(cursor.getColumnIndex(Constant.DB_KEY_SELECTED)));
-            contactList.add(contact);
         }
     }
 
@@ -94,14 +77,20 @@ public class DataBaseManager {
      */
     public void deleteContactFromMobile(String mobile) {
         SQLiteDatabase database = mHelper.getWritableDatabase();
-        database.delete(Constant.DB_TABLE_NAME, Constant.DB_KEY_MOBLIE + "=" + mobile, null);
+        database.delete(Constant.DB_TABLE_NAME, Constant.DB_KEY_MOBLIE + "= ?" , new String[]{mobile});
     }
 
+    /**
+     * 删除所有联系人
+     */
     public void deleteAll() {
         SQLiteDatabase database = mHelper.getWritableDatabase();
         database.delete(Constant.DB_TABLE_NAME, null, null);
     }
 
+    /**
+     * 关闭SqLiteDatabase
+     */
     public void closeHelper() {
         mHelper.close();
     }

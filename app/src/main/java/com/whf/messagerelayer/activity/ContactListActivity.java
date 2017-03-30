@@ -1,33 +1,32 @@
 package com.whf.messagerelayer.activity;
 
-import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.AsyncTask;
-import android.support.v7.app.AlertDialog;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
-import android.view.LayoutInflater;
 import android.view.Menu;
-import android.view.MenuInflater;
 import android.view.MenuItem;
 
 import com.whf.messagerelayer.R;
-import com.whf.messagerelayer.adapter.ContactAdapter;
+import com.whf.messagerelayer.adapter.ContactListAdapter;
 import com.whf.messagerelayer.adapter.decoration.ContactDecoration;
 import com.whf.messagerelayer.bean.Contact;
+import com.whf.messagerelayer.confing.Constant;
 import com.whf.messagerelayer.utils.ContactManager;
 import com.whf.messagerelayer.utils.NativeDataManager;
 import com.whf.messagerelayer.utils.db.DataBaseManager;
 
 import java.util.ArrayList;
+import java.util.zip.Inflater;
 
 public class ContactListActivity extends AppCompatActivity {
 
     private RecyclerView mContactList;
-    private ContactAdapter mContactListAdapter;
+    private ContactListAdapter mContactListAdapter;
     private DataBaseManager mDbManager;
     private NativeDataManager mNativeDataManage;
 
@@ -35,6 +34,7 @@ public class ContactListActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_contact_list);
+        initActionbar();
 
         mDbManager = new DataBaseManager(this);
         mNativeDataManage = new NativeDataManager(this);
@@ -43,64 +43,73 @@ public class ContactListActivity extends AppCompatActivity {
         initRecyclerView();
     }
 
+    private void initActionbar(){
+        ActionBar actionBar = getSupportActionBar();
+        actionBar.setDisplayHomeAsUpEnabled(true);
+    }
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        MenuInflater inflater = new MenuInflater(this);
-        inflater.inflate(R.menu.contact_action_menu,menu);
+
+        menu.add("查找").setIcon(R.mipmap.ic_serch)
+                .setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
+                    @Override
+                    public boolean onMenuItemClick(MenuItem item) {
+                        return true;
+                    }
+                }).setShowAsAction(MenuItem.SHOW_AS_ACTION_ALWAYS);
+
+        menu.add("确定").setIcon(R.mipmap.ic_save)
+                .setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
+                    @Override
+                    public boolean onMenuItemClick(MenuItem item) {
+                        updateSelect();
+                        return true;
+                    }
+                }).setShowAsAction(MenuItem.SHOW_AS_ACTION_ALWAYS);
+
         return super.onCreateOptionsMenu(menu);
     }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()){
-            case R.id.update:
-                updateSelect();
-                break;
-            case R.id.serch:
-                break;
+        if(item.getItemId() == android.R.id.home){
+            finish();
         }
         return super.onOptionsItemSelected(item);
     }
 
-    private void updateSelect(){
+    /**
+     * 保存被选中的联系人到自定义数据库
+     */
+    private void updateSelect() {
         DataBaseManager dataBaseManager = new DataBaseManager(this);
         ArrayList<Contact> contactList = mContactListAdapter.getSelectedList();
         dataBaseManager.addContactList(contactList);
         dataBaseManager.closeHelper();
-        startActivity(new Intent(this,SelectedContactActivity.class));
+        Intent intent = new Intent(this, SelectedContactActivity.class);
+        intent.putExtra(Constant.EXTRA_DATA_CHANGE, true);
+        startActivity(intent);
         finish();
     }
 
+    /**
+     * 初始化RecyclerView
+     * 从系统数据库中拿出所有联系人
+     */
     private void initRecyclerView() {
         mContactList.addItemDecoration(new ContactDecoration());
         mContactList.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
-//        final AlertDialog.Builder builder = new AlertDialog.Builder(this);
-//        builder.setView(LayoutInflater.from(this).inflate(R.layout.dialog_progress, null, false));
-//        final AlertDialog dialog = builder.create();
         new AsyncTask<Void, Void, ArrayList<Contact>>() {
-            @Override
-            protected void onPreExecute() {
-//                if (mNativeDataManage.getDatabaseFlag()){
-//                    dialog.show();
-//                }
-            }
 
             @Override
             protected ArrayList<Contact> doInBackground(Void... params) {
-//                if (mNativeDataManage.getDatabaseFlag()) {
-//                    for (Contact contact : ContactManager.getContactList(ContactListActivity.this)) {
-//                        mDbManager.addContact(contact);
-//                    }
-//                    mNativeDataManage.setDatabaseFlag(false);
-//                }
-//                return mDbManager.getAllContact();
-                return ContactManager.getContactList2(ContactListActivity.this);
+                return ContactManager.getContactList(ContactListActivity.this);
             }
 
             @Override
             protected void onPostExecute(ArrayList<Contact> contacts) {
-//                dialog.cancel();
-                mContactListAdapter = new ContactAdapter(ContactListActivity.this, contacts);
+                mContactListAdapter = new ContactListAdapter(ContactListActivity.this, contacts);
                 mContactList.setAdapter(mContactListAdapter);
             }
         }.execute();

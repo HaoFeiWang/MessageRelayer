@@ -4,27 +4,18 @@ package com.whf.messagerelayer.bean;
  * Created by WHF on 2017/3/28.
  */
 public class Contact {
-    private String mContactId;
     private String mContactName;
     private String mContactNum;
+    //仅用于图标的显示
     private int mSelected = 0;
 
     public Contact() {
 
     }
 
-    public Contact(String contactId, String contactName, String contactNum) {
-        this.mContactId = contactId;
+    public Contact( String contactName, String contactNum) {
         this.mContactName = contactName;
         this.mContactNum = contactNum;
-    }
-
-    public String getContactId() {
-        return mContactId;
-    }
-
-    public void setContactId(String contactId) {
-        this.mContactId = contactId;
     }
 
     public String getContactName() {
