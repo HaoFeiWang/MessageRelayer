@@ -35,7 +35,7 @@ public class RuleActivity extends AppCompatActivity implements View.OnClickListe
         initListener();
     }
 
-    private void initActionbar(){
+    private void initActionbar() {
         ActionBar actionBar = getSupportActionBar();
         actionBar.setDisplayHomeAsUpEnabled(true);
     }
@@ -72,7 +72,7 @@ public class RuleActivity extends AppCompatActivity implements View.OnClickListe
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        if(item.getItemId() == android.R.id.home){
+        if (item.getItemId() == android.R.id.home) {
             finish();
         }
         return super.onOptionsItemSelected(item);
@@ -115,14 +115,12 @@ public class RuleActivity extends AppCompatActivity implements View.OnClickListe
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 String text = editText.getText().toString();
-                if (text.length() != 0) {
-                    if (key.equals(Constant.KEY_CONTENT_PREFIX)) {
-                        mNativeDataManager.setContentPrefix(text);
-                        mPrefixText.setText(text);
-                    } else {
-                        mNativeDataManager.setContentSuffix(text);
-                        mSuffixText.setText(text);
-                    }
+                if (key.equals(Constant.KEY_CONTENT_PREFIX)) {
+                    mNativeDataManager.setContentPrefix(text);
+                    mPrefixText.setText(text);
+                } else {
+                    mNativeDataManager.setContentSuffix(text);
+                    mSuffixText.setText(text);
                 }
             }
         });
