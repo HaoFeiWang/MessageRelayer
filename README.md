@@ -24,7 +24,7 @@
 ![主界面](https://github.com/HaoFeiWang/MessageRelayer/blob/develop/screen/screen_main2.jpg)
 ![规则定制](https://github.com/HaoFeiWang/MessageRelayer/blob/develop/screen/screen_rule.jpg)
 ![选中的联系人](https://github.com/HaoFeiWang/MessageRelayer/blob/develop/screen/screen_select.jpg)
-![关键字](https://github.com/HaoFeiWang/MessageRelayer/blob/develop/screen/screen_key%20.jpg)
+![关键字](https://github.com/HaoFeiWang/MessageRelayer/blob/develop/screen/screen_key.jpg)
 ![联系人](https://github.com/HaoFeiWang/MessageRelayer/blob/develop/screen/screen_list.jpg)
 ![关于](https://github.com/HaoFeiWang/MessageRelayer/blob/develop/screen/screen_about.jpg)
 
