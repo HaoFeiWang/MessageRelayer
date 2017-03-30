@@ -21,8 +21,21 @@
 - 在部分深度定制的机型上手动杀死后无法复活（小米、魅族）。
 
 ## 版本1.1
-![关键字](https://github.com/HaoFeiWang/MessageRelayer/blob/develop/screen/screen_keyword.jpg)
+![主界面](https://github.com/HaoFeiWang/MessageRelayer/blob/develop/screen/screen_main2.jpg)
+![规则定制](https://github.com/HaoFeiWang/MessageRelayer/blob/develop/screen/screen_rule.jpg)
+![选中的联系人](https://github.com/HaoFeiWang/MessageRelayer/blob/develop/screen/screen_select.jpg)
+![关键字](https://github.com/HaoFeiWang/MessageRelayer/blob/develop/screen/screen_key%20.jpg)
+![联系人](https://github.com/HaoFeiWang/MessageRelayer/blob/develop/screen/screen_list.jpg)
+![关于](https://github.com/HaoFeiWang/MessageRelayer/blob/develop/screen/screen_about.jpg)
 
+### 新版功能
+- 总闸开关（在主页上面，关闭后不进行任何转发）
+- 规则定制
+ - 根据指定联系人转发（如果有指定联系人，当收到短信时，属于指定的联系才进行转发；如果没有指定，则转发所有）
+ - 根据包含关键字转发（如果有指定关键字，当收到短信时，短信内容包含任一关键字才进行转发；如果没有指定，则转发所有）
+- 内容定制
+ - 添加内容前缀（转发短信时，在短信的前面加上该前缀）
+ - 添加内容后缀（转发短信时，在短信的后面加上该后缀）
 如果觉得该项目对您有用，请随意打赏。您的支持将鼓励我继续创作！
 
 ![捐赠](https://github.com/HaoFeiWang/MessageRelayer/blob/master/screen/contribution.jpg)
