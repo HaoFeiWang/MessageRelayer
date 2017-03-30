@@ -1,14 +1,14 @@
 # 短信转发工具
 ## 截图展示
-![主界面](https://github.com/HaoFeiWang/MessageRelayer/blob/develop/screen/screen_main2.jpg)
+![主界面](https://github.com/HaoFeiWang/MessageRelayer/blob/master/screen/screen_main2.jpg)
 ![转发至短信](https://github.com/HaoFeiWang/MessageRelayer/blob/master/screen/screen_email.jpg)
 ![转发至邮件](https://github.com/HaoFeiWang/MessageRelayer/blob/master/screen/screen_sms.jpg)
-![规则定制](https://github.com/HaoFeiWang/MessageRelayer/blob/develop/screen/screen_rule.jpg)
+![规则定制](https://github.com/HaoFeiWang/MessageRelayer/blob/master/screen/screen_rule.jpg)
 
-![选中的联系人](https://github.com/HaoFeiWang/MessageRelayer/blob/develop/screen/screen_select.jpg)
-![关键字](https://github.com/HaoFeiWang/MessageRelayer/blob/develop/screen/screen_key.jpg)
-![联系人](https://github.com/HaoFeiWang/MessageRelayer/blob/develop/screen/screen_list.jpg)
-![关于](https://github.com/HaoFeiWang/MessageRelayer/blob/develop/screen/screen_about.jpg)
+![选中的联系人](https://github.com/HaoFeiWang/MessageRelayer/blob/master/screen/screen_select.jpg)
+![关键字](https://github.com/HaoFeiWang/MessageRelayer/blob/master/screen/screen_key.jpg)
+![联系人](https://github.com/HaoFeiWang/MessageRelayer/blob/master/screen/screen_list.jpg)
+![关于](https://github.com/HaoFeiWang/MessageRelayer/blob/master/screen/screen_about.jpg)
 
 ## 功能概述
 ### 总闸开关
