@@ -5,6 +5,9 @@ import android.content.SharedPreferences;
 
 import com.whf.messagerelayer.confing.Constant;
 
+import java.util.HashSet;
+import java.util.Set;
+
 /**
  * Created by WHF on 2017/3/24.
  */
@@ -82,11 +85,11 @@ public class NativeDataManager {
     }
 
     public String getEmailHost() {
-        return mPreference.getString(Constant.KEY_EMAIL_HOST, "点击设置");
+        return mPreference.getString(Constant.KEY_EMAIL_HOST, null);
     }
 
     public String getEmailPort() {
-        return mPreference.getString(Constant.KEY_EMAIL_PORT, "点击设置");
+        return mPreference.getString(Constant.KEY_EMAIL_PORT, null);
     }
 
     public void setEmailSsl(Boolean b) {
@@ -119,6 +122,30 @@ public class NativeDataManager {
 
     public String getEmailSubject() {
         return mPreference.getString(Constant.KEY_EMAIL_SUBJECT, "短信转发");
+    }
+
+    public void setKeywordSet(Set<String> values){
+        mPreference.edit().putStringSet(Constant.KEY_KEYWORD_LIST,values).apply();
+    }
+
+    public Set<String> getKeywordSet(){
+        return mPreference.getStringSet(Constant.KEY_KEYWORD_LIST,new HashSet<String>());
+    }
+
+    public void setContentPrefix(String prefix){
+        mPreference.edit().putString(Constant.KEY_CONTENT_PREFIX,prefix).apply();
+    }
+
+    public void setContentSuffix(String suffix){
+        mPreference.edit().putString(Constant.KEY_CONTENT_SUFFIX,suffix).apply();
+    }
+
+    public String getContentSuffix(){
+        return mPreference.getString(Constant.KEY_CONTENT_SUFFIX,null);
+    }
+
+    public String getContentPrefix(){
+        return mPreference.getString(Constant.KEY_CONTENT_PREFIX,null);
     }
 
 }

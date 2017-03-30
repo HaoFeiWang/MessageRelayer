@@ -23,11 +23,7 @@ public class EmailRelayerManager {
     public static final int CODE_SUCCESS = 0x1;
     public static final int CODE_FAILE = 0x0;
 
-    private static final String PORT_SSL_QQ = "465";
-    private static final String PORT_SSL_163 = "465";
-    private static final String PORT_SSL_126 = "465";
-    private static final String PORT_SSL_GMAIL = "465";
-    private static final String PORT_SSL_OUTLOOK = "465";
+    private static final String PORT_SSL = "465";
 
     private static final String HOST_QQ = "smtp.qq.com";
     private static final String HOST_163 = "smtp.163.com";
@@ -41,6 +37,19 @@ public class EmailRelayerManager {
         User user = getSenderUser(dataManager);
         EmailMessage  emailMessage = creatEmailMessage(content,dataManager);
         setHost(dataManager,props);
+
+        //是否开启SSL
+        if (dataManager.getEmailSsl()){
+            if(dataManager.getEmailServicer()==Constant.EMAIL_SERVICER_OTHER){
+                setSslMode(props,PORT_SSL);
+            }else{
+                String port = dataManager.getEmailPort();
+                if(port!=null){
+                    setSslMode(props,port);
+                }
+            }
+        }
+
         setSenderToPro(props,user);
         props.put("mail.smtp.auth", true);//如果不设置，则报553错误
         props.put("mail.transport.protocol", "smtp");
@@ -124,42 +133,27 @@ public class EmailRelayerManager {
      * @return
      */
     private static void setHost(NativeDataManager dataManager, Properties props) {
-        boolean ssl = dataManager.getEmailSsl();
+
         switch (dataManager.getEmailServicer()) {
             case Constant.EMAIL_SERVICER_QQ:
                 props.put("mail.smtp.host", HOST_QQ);
-                if(ssl) {
-                    setSslMode(props,PORT_SSL_QQ);
-                }
                 break;
             case Constant.EMAIL_SERVICER_163:
                 props.put("mail.smtp.host", HOST_163);
-                if(ssl) {
-                    setSslMode(props,PORT_SSL_163);
-                }
                 break;
             case Constant.EMAIL_SERVICER_126:
                 props.put("mail.smtp.host", HOST_126);
-                if(ssl) {
-                    setSslMode(props,PORT_SSL_126);
-                }
                 break;
             case Constant.EMAIL_SERVICER_OUTLOOK:
                 props.put("mail.smtp.host", HOST_OUTLOOK);
-                if(ssl) {
-                    setSslMode(props,PORT_SSL_OUTLOOK);
-                }
                 break;
             case Constant.EMAIL_SERVICER_GMAIL:
                 props.put("mail.smtp.host", HOST_GMAIL);
-                if(ssl) {
-                    setSslMode(props,PORT_SSL_GMAIL);
-                }
                 break;
             case Constant.EMAIL_SERVICER_OTHER:
-                props.put("mail.smtp.host", dataManager.getEmailHost());
-                if(ssl) {
-                    setSslMode(props,dataManager.getEmailPort());
+                String host = dataManager.getEmailHost();
+                if(host!=null){
+                    props.put("mail.smtp.host", host);
                 }
                 break;
         }

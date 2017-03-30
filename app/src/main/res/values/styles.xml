@@ -8,4 +8,17 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
+    <style name="AppTheme.Start" parent="android:Theme.Translucent.NoTitleBar.Fullscreen">
+    </style>
+    
+    <!-- 无任何效果 -->
+    <!-- <item name="android:actionBarStyle">@style/CustomeActionBar</item> -->
+    <style name="CustomeActionBar" parent="Theme.AppCompat.Light.DarkActionBar">
+        <item name="android:titleTextStyle">@style/ActionBarTitle</item>
+    </style>
+
+    <style name="ActionBarTitle" parent = "@android:style/TextAppearance.Holo.Widget.ActionBar.Title">
+        <item name="android:textSize">10sp</item>
+    </style>
+
 </resources>

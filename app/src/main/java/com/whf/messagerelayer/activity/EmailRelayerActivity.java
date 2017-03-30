@@ -3,11 +3,13 @@ package com.whf.messagerelayer.activity;
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.os.AsyncTask;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.CompoundButton;
 import android.widget.EditText;
@@ -35,11 +37,25 @@ public class EmailRelayerActivity extends AppCompatActivity implements
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_email_relayer);
+        initActionbar();
 
         this.mNativeDataManager = new NativeDataManager(this);
         initView();
         initData();
         initListener();
+    }
+
+    private void initActionbar() {
+        ActionBar actionBar = getSupportActionBar();
+        actionBar.setDisplayHomeAsUpEnabled(true);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if (item.getItemId() == android.R.id.home) {
+            finish();
+        }
+        return super.onOptionsItemSelected(item);
     }
 
     private void initData() {
@@ -66,8 +82,14 @@ public class EmailRelayerActivity extends AppCompatActivity implements
         mLayoutPort.setVisibility(View.VISIBLE);
         mAddressLine.setVisibility(View.VISIBLE);
         mPortLine.setVisibility(View.VISIBLE);
-        mTextAddress.setText(mNativeDataManager.getEmailHost());
-        mTextPort.setText(mNativeDataManager.getEmailPort());
+        String host = mNativeDataManager.getEmailHost();
+        String port = mNativeDataManager.getEmailPort();
+        if (host != null) {
+            mTextAddress.setText(host);
+        }
+        if (port != null) {
+            mTextPort.setText(port);
+        }
     }
 
     /**
@@ -320,9 +342,7 @@ public class EmailRelayerActivity extends AppCompatActivity implements
 
         textViewTitle.setText("请输入SMTP服务器地址");
         String text = mTextAddress.getText().toString();
-        if (!text.equals("点击设置")) {
-            editText.setText(text);
-        }
+        editText.setText(text);
 
         builder.setView(view);
         builder.setPositiveButton("确定", new DialogInterface.OnClickListener() {
@@ -350,9 +370,7 @@ public class EmailRelayerActivity extends AppCompatActivity implements
 
         textViewTitle.setText("请输入SMTP端口号");
         String text = mTextPort.getText().toString();
-        if (!text.equals("点击设置")) {
-            editText.setText(text);
-        }
+        editText.setText(text);
 
         builder.setView(view);
         builder.setPositiveButton("确定", new DialogInterface.OnClickListener() {
@@ -385,7 +403,8 @@ public class EmailRelayerActivity extends AppCompatActivity implements
         }
 
         builder.setView(view);
-        final ProgressDialog progressDialog = new ProgressDialog(this);
+        final AlertDialog.Builder progressBuilder = new AlertDialog.Builder(this);
+        progressBuilder.setView(LayoutInflater.from(this).inflate(R.layout.dialog_progress,null,false));
 
         builder.setPositiveButton("确定", new DialogInterface.OnClickListener() {
             @Override
@@ -398,11 +417,10 @@ public class EmailRelayerActivity extends AppCompatActivity implements
         builder.setNeutralButton("测试", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-                progressDialog.show();
+                final AlertDialog progressDialog = progressBuilder.show();
                 new AsyncTask<Void, Void, Integer>() {
                     @Override
                     protected Integer doInBackground(Void... params) {
-                        Log.e("::::::::::", "开始发送");
                         return EmailRelayerManager.relayEmail(mNativeDataManager, "配置正确！");
                     }
 
@@ -412,9 +430,9 @@ public class EmailRelayerActivity extends AppCompatActivity implements
                         if (integer == EmailRelayerManager.CODE_SUCCESS) {
                             mNativeDataManager.setEmailToAccount(editText.getText().toString());
                             mTextToAccount.setText(editText.getText());
-                            Toast.makeText(EmailRelayerActivity.this, "邮箱配置有误", Toast.LENGTH_SHORT);
+                            Toast.makeText(EmailRelayerActivity.this, "邮箱配置正确", Toast.LENGTH_SHORT).show();
                         } else {
-                            Toast.makeText(EmailRelayerActivity.this, "邮箱配置正确", Toast.LENGTH_SHORT);
+                            Toast.makeText(EmailRelayerActivity.this, "邮箱配置有误", Toast.LENGTH_SHORT).show();
                         }
                     }
                 }.execute();

@@ -7,6 +7,7 @@
     <uses-permission android:name="android.permission.SEND_SMS"/>
     <uses-permission android:name="android.permission.READ_SMS"/>
     <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.READ_CONTACTS"/>
 
     <application
         android:allowBackup="true"
@@ -15,11 +16,6 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".activity.MainActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN"/>
-
-                <category android:name="android.intent.category.LAUNCHER"/>
-            </intent-filter>
         </activity>
 
         <receiver
@@ -37,11 +33,41 @@
             android:exported="true">
         </service>
 
-        <activity android:name=".activity.SmsRelayerActivity"
+        <activity
+            android:name=".activity.SmsRelayerActivity"
             android:label="配置短信">
         </activity>
-        <activity android:name=".activity.EmailRelayerActivity"
+        <activity
+            android:name=".activity.EmailRelayerActivity"
             android:label="配置邮件">
+        </activity>
+        <activity
+            android:name=".activity.RuleActivity"
+            android:label="配置转发规则">
+        </activity>
+        <activity
+            android:name=".activity.ContactListActivity"
+            android:label="选择联系人">
+        </activity>
+        <activity
+            android:name=".activity.SelectedContactActivity"
+            android:label="联系人来源"
+            android:launchMode="singleTask">
+        </activity>
+        <activity
+            android:name=".activity.KeywordActivity"
+            android:label="关键字来源">
+        </activity>
+        <activity
+            android:name=".activity.AboutActivity"
+            android:label="关于">
+        </activity>
+        <activity android:name=".activity.StartActivity"
+            android:theme="@style/AppTheme.Start">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN"/>
+                <category android:name="android.intent.category.LAUNCHER"/>
+            </intent-filter>
         </activity>
     </application>
 

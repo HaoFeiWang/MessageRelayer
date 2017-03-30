@@ -106,7 +106,7 @@
                 android:layout_height="match_parent"
                 android:layout_alignParentRight="true"
                 android:gravity="center_vertical"
-                android:text="点击设置"
+                android:text="smtp.xxxx.com"
                 android:textColor="@color/colorLightText"
                 android:textSize="13sp"/>
         </RelativeLayout>
@@ -144,7 +144,7 @@
                 android:layout_height="match_parent"
                 android:layout_alignParentRight="true"
                 android:gravity="center_vertical"
-                android:text="点击设置"
+                android:text="25"
                 android:textColor="@color/colorLightText"
                 android:textSize="13sp"/>
         </RelativeLayout>
