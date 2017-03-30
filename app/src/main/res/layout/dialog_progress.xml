@@ -13,6 +13,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="15dp"
-        android:text="正在加载通讯录..."
+        android:text="正在测试邮箱配置..."
         android:textSize="16sp"/>
 </LinearLayout>

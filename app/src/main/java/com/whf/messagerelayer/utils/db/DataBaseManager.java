@@ -4,9 +4,11 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.util.Log;
 
 import com.whf.messagerelayer.bean.Contact;
 import com.whf.messagerelayer.confing.Constant;
+import com.whf.messagerelayer.utils.FormatMobile;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -46,9 +48,13 @@ public class DataBaseManager {
     public void addContactList(List<Contact> contactList) {
         SQLiteDatabase database = mHelper.getWritableDatabase();
         for (Contact contact : contactList) {
+            String num = contact.getContactNum();
+            if (FormatMobile.hasPrefix(num)){
+                num = FormatMobile.formatMobile(num);
+            }
             ContentValues values = new ContentValues();
             values.put(Constant.DB_KEY_NAME, contact.getContactName());
-            values.put(Constant.DB_KEY_MOBLIE, contact.getContactNum());
+            values.put(Constant.DB_KEY_MOBLIE, num);
             database.insert(Constant.DB_TABLE_NAME, null, values);
         }
     }

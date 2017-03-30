@@ -25,7 +25,7 @@ public class ContactManager {
 
         Cursor cursor = context.getContentResolver()
                 .query(ContactsContract.CommonDataKinds.Phone.CONTENT_URI
-                        ,null,null,null,null);
+                        ,null,null,null,ContactsContract.CommonDataKinds.Phone.SORT_KEY_PRIMARY);
         while (cursor.moveToNext()){
             Contact contact = new Contact();
             contact.setContactName(cursor.getString(cursor
@@ -39,5 +39,4 @@ public class ContactManager {
         }
         return mContactList;
     }
-
 }

@@ -85,11 +85,11 @@ public class NativeDataManager {
     }
 
     public String getEmailHost() {
-        return mPreference.getString(Constant.KEY_EMAIL_HOST, "点击设置");
+        return mPreference.getString(Constant.KEY_EMAIL_HOST, null);
     }
 
     public String getEmailPort() {
-        return mPreference.getString(Constant.KEY_EMAIL_PORT, "点击设置");
+        return mPreference.getString(Constant.KEY_EMAIL_PORT, null);
     }
 
     public void setEmailSsl(Boolean b) {

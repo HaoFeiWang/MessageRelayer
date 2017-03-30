@@ -18,8 +18,7 @@ public class DataBaseHelper extends SQLiteOpenHelper {
     private static final String DB_NAME = "contact.db";
     private static final String CREAD_DB_SQL = "CREATE TABLE "+Constant.DB_TABLE_NAME+
             "("+ Constant.DB_KEY_ID+" integer primary key autoincrement" +
-            ","+Constant.DB_KEY_NAME+" varchar(20),"+Constant.DB_KEY_MOBLIE+" varchar(20)" +
-            ","+Constant.DB_KEY_SELECTED+" integer)";
+            ","+Constant.DB_KEY_NAME+" varchar(20),"+Constant.DB_KEY_MOBLIE+" varchar(20))";
 
     public DataBaseHelper(Context context) {
         super(context, DB_NAME, null, VERSION);

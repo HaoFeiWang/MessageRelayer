@@ -11,6 +11,7 @@ import android.widget.Toast;
 
 import com.whf.messagerelayer.confing.Constant;
 import com.whf.messagerelayer.service.SmsService;
+import com.whf.messagerelayer.utils.FormatMobile;
 import com.whf.messagerelayer.utils.NativeDataManager;
 
 public class MessageReceiver extends BroadcastReceiver {
@@ -29,8 +30,7 @@ public class MessageReceiver extends BroadcastReceiver {
                 Object[] pdus = (Object[]) bundle.get("pdus");
                 for(int i = 0;i<pdus.length;i++){
                     SmsMessage sms = SmsMessage.createFromPdu((byte[]) pdus[i]);
-                    ComponentName componentName = startSmsService(context, sms);
-                    Toast.makeText(context,componentName.toString(),Toast.LENGTH_LONG).show();
+                    startSmsService(context, sms);
                 }
             }
         }
@@ -38,6 +38,10 @@ public class MessageReceiver extends BroadcastReceiver {
 
     private ComponentName startSmsService(Context context, SmsMessage sms) {
         String mobile = sms.getOriginatingAddress();//发送短信的手机号码
+
+        if(FormatMobile.hasPrefix(mobile)){
+            mobile = FormatMobile.formatMobile(mobile);
+        }
         String content = sms.getMessageBody();//短信内容
 
         Intent serviceIntent = new Intent(context, SmsService.class);

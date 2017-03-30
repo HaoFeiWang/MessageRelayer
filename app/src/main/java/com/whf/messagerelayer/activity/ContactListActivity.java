@@ -1,15 +1,22 @@
 package com.whf.messagerelayer.activity;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.support.v7.app.ActionBar;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.EditText;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import com.whf.messagerelayer.R;
 import com.whf.messagerelayer.adapter.ContactListAdapter;
@@ -17,18 +24,15 @@ import com.whf.messagerelayer.adapter.decoration.ContactDecoration;
 import com.whf.messagerelayer.bean.Contact;
 import com.whf.messagerelayer.confing.Constant;
 import com.whf.messagerelayer.utils.ContactManager;
-import com.whf.messagerelayer.utils.NativeDataManager;
 import com.whf.messagerelayer.utils.db.DataBaseManager;
 
 import java.util.ArrayList;
-import java.util.zip.Inflater;
 
 public class ContactListActivity extends AppCompatActivity {
 
-    private RecyclerView mContactList;
+    private RecyclerView mContactRecycler;
     private ContactListAdapter mContactListAdapter;
-    private DataBaseManager mDbManager;
-    private NativeDataManager mNativeDataManage;
+    private ArrayList<Contact> mContactList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,14 +40,11 @@ public class ContactListActivity extends AppCompatActivity {
         setContentView(R.layout.activity_contact_list);
         initActionbar();
 
-        mDbManager = new DataBaseManager(this);
-        mNativeDataManage = new NativeDataManager(this);
-
-        mContactList = (RecyclerView) findViewById(R.id.list_contact);
+        mContactRecycler = (RecyclerView) findViewById(R.id.list_contact);
         initRecyclerView();
     }
 
-    private void initActionbar(){
+    private void initActionbar() {
         ActionBar actionBar = getSupportActionBar();
         actionBar.setDisplayHomeAsUpEnabled(true);
     }
@@ -51,10 +52,11 @@ public class ContactListActivity extends AppCompatActivity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
 
-        menu.add("查找").setIcon(R.mipmap.ic_serch)
+        menu.add("查找").setIcon(R.mipmap.ic_find)
                 .setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
                     @Override
                     public boolean onMenuItemClick(MenuItem item) {
+                        showFindDialog();
                         return true;
                     }
                 }).setShowAsAction(MenuItem.SHOW_AS_ACTION_ALWAYS);
@@ -71,9 +73,53 @@ public class ContactListActivity extends AppCompatActivity {
         return super.onCreateOptionsMenu(menu);
     }
 
+    private void showFindDialog() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        View view = LayoutInflater.from(this).inflate(R.layout.dialog_edit, null, false);
+        final EditText editText = (EditText) view.findViewById(R.id.dialog_edit);
+        TextView textView = (TextView) view.findViewById(R.id.dialog_title);
+        textView.setText("请输入要查找的联系人全名");
+
+        builder.setView(view);
+        builder.setNegativeButton("取消", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+
+            }
+        });
+
+        builder.setPositiveButton("查找", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                String name = editText.getText().toString();
+                if (name.length() != 0){
+                    findName(name);
+                }
+            }
+        });
+
+        builder.show();
+    }
+
+    /**
+     * 根据名字查找
+     */
+    private void findName(String name) {
+        int length = mContactList.size();
+        for (int i=0;i<length;i++){
+            if (mContactList.get(i).getContactName().equals(name)) {
+                mContactRecycler.scrollToPosition(i);
+                Toast.makeText(this,"找到啦~~",Toast.LENGTH_LONG).show();
+                break;
+            }else if(i==length-1){
+                Toast.makeText(this,"没找到~~",Toast.LENGTH_LONG).show();
+            }
+        }
+    }
+
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        if(item.getItemId() == android.R.id.home){
+        if (item.getItemId() == android.R.id.home) {
             finish();
         }
         return super.onOptionsItemSelected(item);
@@ -98,19 +144,20 @@ public class ContactListActivity extends AppCompatActivity {
      * 从系统数据库中拿出所有联系人
      */
     private void initRecyclerView() {
-        mContactList.addItemDecoration(new ContactDecoration());
-        mContactList.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
+        mContactRecycler.addItemDecoration(new ContactDecoration());
+        mContactRecycler.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
         new AsyncTask<Void, Void, ArrayList<Contact>>() {
 
             @Override
             protected ArrayList<Contact> doInBackground(Void... params) {
-                return ContactManager.getContactList(ContactListActivity.this);
+                mContactList = ContactManager.getContactList(ContactListActivity.this);
+                return mContactList;
             }
 
             @Override
             protected void onPostExecute(ArrayList<Contact> contacts) {
                 mContactListAdapter = new ContactListAdapter(ContactListActivity.this, contacts);
-                mContactList.setAdapter(mContactListAdapter);
+                mContactRecycler.setAdapter(mContactListAdapter);
             }
         }.execute();
     }

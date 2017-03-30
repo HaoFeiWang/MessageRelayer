@@ -73,4 +73,5 @@ public class ContactListAdapter extends RecyclerView.Adapter<ContactHolder> {
     public ArrayList<Contact> getSelectedList(){
         return mSelectedList;
     }
+
 }
