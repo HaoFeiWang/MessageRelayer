@@ -43,4 +43,5 @@
 - 其他邮箱设置时的Crash和默认数据
 
 如果觉得该项目对您有用，请随意打赏。您的支持将鼓励我继续创作！
+
 ![捐赠](https://github.com/HaoFeiWang/MessageRelayer/blob/master/screen/contribution.jpg)
