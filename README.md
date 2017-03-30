@@ -36,9 +36,6 @@
 ## 上线
 1.0版本已上传至百度应用市场，随即上传1.1版本
 
-## 上线
-1.0版本已上传至百度应用市场
-
 如果觉得该项目对您有用，请随意打赏。您的支持将鼓励我继续创作！
 
 ![捐赠](https://github.com/HaoFeiWang/MessageRelayer/blob/master/screen/contribution.jpg)
