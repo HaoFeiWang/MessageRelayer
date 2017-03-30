@@ -18,7 +18,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="15dp"
-        android:text="短信助手 1.0.1"
+        android:text="短信助手 1.1.0"
         android:textColor="@color/colorLightText"
         android:textSize="18sp"/>
     <TextView
