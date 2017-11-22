@@ -62,12 +62,18 @@
             android:name=".activity.AboutActivity"
             android:label="关于">
         </activity>
-        <activity android:name=".activity.StartActivity"
+        <activity
+            android:name=".activity.StartActivity"
             android:theme="@style/AppTheme.Start">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
+
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
+        </activity>
+        <activity
+            android:name=".activity.RegexActivity"
+            android:label="正则表达式来源">
         </activity>
     </application>
 

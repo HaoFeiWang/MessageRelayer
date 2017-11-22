@@ -132,6 +132,14 @@ public class NativeDataManager {
         return mPreference.getStringSet(Constant.KEY_KEYWORD_LIST,new HashSet<String>());
     }
 
+    public void setRegexSet(Set<String> values){
+        mPreference.edit().putStringSet(Constant.KEY_REGEX_LIST,values).apply();
+    }
+
+    public Set<String> getRegexSet(){
+        return mPreference.getStringSet(Constant.KEY_REGEX_LIST,new HashSet<String>());
+    }
+
     public void setContentPrefix(String prefix){
         mPreference.edit().putString(Constant.KEY_CONTENT_PREFIX,prefix).apply();
     }
