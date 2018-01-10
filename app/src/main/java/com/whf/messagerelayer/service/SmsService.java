@@ -31,48 +31,35 @@ public class SmsService extends IntentService {
     protected void onHandleIntent(Intent intent) {
         mNativeDataManager = new NativeDataManager(this);
         mDataBaseManager = new DataBaseManager(this);
-
         String mobile = intent.getStringExtra(Constant.EXTRA_MESSAGE_MOBILE);
         String content = intent.getStringExtra(Constant.EXTRA_MESSAGE_CONTENT);
         Set<String> keySet = mNativeDataManager.getKeywordSet();
         Set<String> regexSet = mNativeDataManager.getRegexSet();
         ArrayList<Contact> contactList = mDataBaseManager.getAllContact();
-        //无转发规则
-        if (keySet.size() == 0 && contactList.size() == 0 && regexSet.size() == 0) {
-            relayMessage(content);
-        } else if (keySet.size() != 0 && contactList.size() == 0 && regexSet.size() == 0) {//仅有关键字规则
+
+        if (keySet.size() != 0) {// 关键字规则
             for (String key : keySet) {
                 if (content.contains(key)) {
                     relayMessage(content);
-                    break;
+                    return;
                 }
             }
-        } else if (keySet.size() == 0 && contactList.size() != 0 && regexSet.size() == 0) {//仅有手机号规则
+        }
+
+        if (contactList.size() != 0) {// 手机号规则
             for (Contact contact : contactList) {
                 if (contact.getContactNum().equals(mobile)) {
                     relayMessage(content);
-                    break;
+                    return;
                 }
             }
-        } else if (keySet.size() == 0 && contactList.size() == 0 && regexSet.size() != 0) { // 仅有正则表达式规则
-            for (String regex : regexSet){
-                if (Pattern.matches(regex,content)){
+        }
+
+        if (regexSet.size() != 0) { // 正则表达式规则
+            for (String regex : regexSet) {
+                if (Pattern.matches(regex, content)) {
                     relayMessage(content);
-                    break;
-                }
-            }
-        } else {//三种规则共存
-            out:
-            for (Contact contact : contactList) {
-                if (contact.getContactNum().equals(mobile)) {
-                    for (String key : keySet) {
-                        for (String regex : regexSet) {
-                            if (content.contains(key) && Pattern.matches(regex,content)) {
-                                relayMessage(content);
-                                break out;
-                            }
-                        }
-                    }
+                    return;
                 }
             }
         }
