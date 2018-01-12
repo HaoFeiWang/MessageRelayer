@@ -19,7 +19,7 @@ import com.whf.messagerelayer.utils.NativeDataManager;
 
 public class RuleActivity extends AppCompatActivity implements View.OnClickListener {
 
-    private RelativeLayout mMoblieRuleLayout, mKeywordRuleLayout, mPrefixRuleLayout, mSuffixRuleLayout;
+    private RelativeLayout mMoblieRuleLayout, mKeywordRuleLayout,mRegexRuleLayout, mPrefixRuleLayout, mSuffixRuleLayout;
     private NativeDataManager mNativeDataManager;
     private TextView mPrefixText, mSuffixText;
 
@@ -43,7 +43,7 @@ public class RuleActivity extends AppCompatActivity implements View.OnClickListe
     private void initView() {
         mMoblieRuleLayout = (RelativeLayout) findViewById(R.id.layout_rule_mobile);
         mKeywordRuleLayout = (RelativeLayout) findViewById(R.id.layout_rule_keyword);
-
+        mRegexRuleLayout = (RelativeLayout) findViewById(R.id.layout_rule_regex);
         mPrefixRuleLayout = (RelativeLayout) findViewById(R.id.layout_rule_prefix);
         mSuffixRuleLayout = (RelativeLayout) findViewById(R.id.layout_rule_suffix);
 
@@ -54,6 +54,7 @@ public class RuleActivity extends AppCompatActivity implements View.OnClickListe
     private void initListener() {
         mMoblieRuleLayout.setOnClickListener(this);
         mKeywordRuleLayout.setOnClickListener(this);
+        mRegexRuleLayout.setOnClickListener(this);
 
         mPrefixRuleLayout.setOnClickListener(this);
         mSuffixRuleLayout.setOnClickListener(this);
@@ -86,6 +87,9 @@ public class RuleActivity extends AppCompatActivity implements View.OnClickListe
                 break;
             case R.id.layout_rule_keyword:
                 startActivity(new Intent(this, KeywordActivity.class));
+                break;
+            case R.id.layout_rule_regex:
+                startActivity(new Intent(this, RegexActivity.class));
                 break;
             case R.id.layout_rule_prefix:
                 showEditDialog("请输入要附加的内容前缀", Constant.KEY_CONTENT_PREFIX);
