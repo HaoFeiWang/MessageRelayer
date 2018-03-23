@@ -6,10 +6,8 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.telephony.SmsMessage;
-import android.util.Log;
-import android.widget.Toast;
 
-import com.whf.messagerelayer.confing.Constant;
+import com.whf.messagerelayer.data.Constant;
 import com.whf.messagerelayer.service.SmsService;
 import com.whf.messagerelayer.utils.FormatMobile;
 import com.whf.messagerelayer.utils.NativeDataManager;

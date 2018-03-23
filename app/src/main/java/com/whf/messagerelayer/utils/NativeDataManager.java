@@ -3,7 +3,7 @@ package com.whf.messagerelayer.utils;
 import android.content.Context;
 import android.content.SharedPreferences;
 
-import com.whf.messagerelayer.confing.Constant;
+import com.whf.messagerelayer.data.Constant;
 
 import java.util.HashSet;
 import java.util.Set;

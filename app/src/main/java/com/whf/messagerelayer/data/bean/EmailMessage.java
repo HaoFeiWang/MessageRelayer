@@ -1,4 +1,4 @@
-package com.whf.messagerelayer.bean;
+package com.whf.messagerelayer.data.bean;
 
 /**
  * Created by WHF on 2017/3/25.

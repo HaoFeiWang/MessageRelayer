@@ -8,7 +8,7 @@
     android:orientation="vertical"
     android:gravity="center_horizontal"
     android:layout_marginTop="100dp"
-    tools:context="com.whf.messagerelayer.activity.AboutActivity">
+    tools:context="com.whf.messagerelayer.view.activity.AboutActivity">
 
     <ImageView
         android:layout_width="wrap_content"

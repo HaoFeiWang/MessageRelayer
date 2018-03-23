@@ -5,7 +5,7 @@
     android:id="@+id/activity_selected_contact"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.whf.messagerelayer.activity.SelectedContactActivity">
+    tools:context="com.whf.messagerelayer.view.activity.SelectedContactActivity">
     <android.support.v7.widget.RecyclerView
         android:id="@+id/list_selected_contact"
         android:layout_width="match_parent"

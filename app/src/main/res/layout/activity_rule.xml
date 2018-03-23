@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context="com.whf.messagerelayer.activity.RuleActivity">
+    tools:context="com.whf.messagerelayer.view.activity.RuleActivity">
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

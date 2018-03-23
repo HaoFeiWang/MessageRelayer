@@ -1,4 +1,4 @@
-package com.whf.messagerelayer.confing;
+package com.whf.messagerelayer.data;
 
 /**
  * Created by WHF on 2017/3/24.

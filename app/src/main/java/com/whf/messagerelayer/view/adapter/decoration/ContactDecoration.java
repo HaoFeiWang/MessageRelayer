@@ -1,7 +1,6 @@
-package com.whf.messagerelayer.adapter.decoration;
+package com.whf.messagerelayer.view.adapter.decoration;
 
 import android.graphics.Canvas;
-import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Rect;
 import android.graphics.RectF;

@@ -1,4 +1,4 @@
-package com.whf.messagerelayer.adapter;
+package com.whf.messagerelayer.view.adapter;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
@@ -7,11 +7,10 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.whf.messagerelayer.R;
-import com.whf.messagerelayer.adapter.holder.ContactHolder;
-import com.whf.messagerelayer.bean.Contact;
-import com.whf.messagerelayer.utils.db.DataBaseManager;
+import com.whf.messagerelayer.view.adapter.holder.ContactHolder;
+import com.whf.messagerelayer.data.bean.Contact;
+import com.whf.messagerelayer.data.DataBaseManager;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**

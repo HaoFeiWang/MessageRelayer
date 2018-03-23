@@ -1,4 +1,4 @@
-package com.whf.messagerelayer.adapter.holder;
+package com.whf.messagerelayer.view.adapter.holder;
 
 import android.support.v7.widget.RecyclerView;
 import android.view.View;

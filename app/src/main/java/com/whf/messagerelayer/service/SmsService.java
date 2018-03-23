@@ -2,17 +2,13 @@ package com.whf.messagerelayer.service;
 
 import android.app.IntentService;
 import android.content.Intent;
-import android.os.IBinder;
-import android.provider.Telephony;
-import android.util.Log;
-import android.widget.Toast;
 
-import com.whf.messagerelayer.bean.Contact;
-import com.whf.messagerelayer.confing.Constant;
+import com.whf.messagerelayer.data.bean.Contact;
+import com.whf.messagerelayer.data.Constant;
 import com.whf.messagerelayer.utils.EmailRelayerManager;
 import com.whf.messagerelayer.utils.NativeDataManager;
 import com.whf.messagerelayer.utils.SmsRelayerManager;
-import com.whf.messagerelayer.utils.db.DataBaseManager;
+import com.whf.messagerelayer.data.DataBaseManager;
 
 import java.util.ArrayList;
 import java.util.Set;

@@ -1,7 +1,7 @@
 package com.whf.messagerelayer.utils;
 
-import com.whf.messagerelayer.bean.EmailMessage;
-import com.whf.messagerelayer.confing.Constant;
+import com.whf.messagerelayer.data.bean.EmailMessage;
+import com.whf.messagerelayer.data.Constant;
 
 import java.io.UnsupportedEncodingException;
 import java.util.Properties;
@@ -74,11 +74,6 @@ public class EmailRelayerManager {
 
     /**
      * 创建邮件消息对象
-     * @param session
-     * @param emailMessage
-     * @return
-     * @throws UnsupportedEncodingException
-     * @throws MessagingException
      */
     private static MimeMessage creatMessage(Session session, EmailMessage emailMessage)
             throws UnsupportedEncodingException, MessagingException {
@@ -95,9 +90,6 @@ public class EmailRelayerManager {
      * SMTP 服务器的端口 (非 SSL 连接的端口一般默认为 25, 可以不添加, 如果
      * 开启了 SSL 连接,需要改为对应邮箱的 SMTP 服务器的端口, 具体可查看对应
      * 邮箱服务的帮助,QQ邮箱的SMTP(SLL)端口为465或587, 其他邮箱自行去查看)
-     * @param props
-     * @param smtpPort
-     * @return
      */
     private static void setSslMode(Properties props, String smtpPort) {
         props.setProperty("mail.smtp.port", smtpPort);
@@ -108,8 +100,6 @@ public class EmailRelayerManager {
 
     /**
      * 从本地数据获取发送方账号和密码
-     * @param dataManager
-     * @return
      */
     private static User getSenderUser(NativeDataManager dataManager){
         return new User(dataManager.getEmailAccount(),dataManager.getEmailPassword());
@@ -117,9 +107,6 @@ public class EmailRelayerManager {
 
     /**
      * 将发送发的账号和密码设置给配置文件
-     * @param properties
-     * @param user
-     * @return
      */
     private static void setSenderToPro(Properties properties, User user){
         properties.put("mail.smtp.username", user.account);
@@ -128,9 +115,6 @@ public class EmailRelayerManager {
 
     /**
      * 设置主机
-     * @param dataManager
-     * @param props
-     * @return
      */
     private static void setHost(NativeDataManager dataManager, Properties props) {
 
@@ -195,9 +179,6 @@ public class EmailRelayerManager {
 
     /**
      * 封装消息实体
-     * @param content
-     * @param dataManager
-     * @return
      */
     private static EmailMessage creatEmailMessage(String content,NativeDataManager dataManager){
         EmailMessage message = new EmailMessage();

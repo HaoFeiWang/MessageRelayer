@@ -1,11 +1,8 @@
-package com.whf.messagerelayer.utils.db;
+package com.whf.messagerelayer.data;
 
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
-import android.provider.ContactsContract;
-
-import com.whf.messagerelayer.confing.Constant;
 
 
 /**

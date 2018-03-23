@@ -1,13 +1,11 @@
-package com.whf.messagerelayer.utils.db;
+package com.whf.messagerelayer.data;
 
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
-import android.util.Log;
 
-import com.whf.messagerelayer.bean.Contact;
-import com.whf.messagerelayer.confing.Constant;
+import com.whf.messagerelayer.data.bean.Contact;
 import com.whf.messagerelayer.utils.FormatMobile;
 
 import java.util.ArrayList;
@@ -78,8 +76,6 @@ public class DataBaseManager {
 
     /**
      * 删除某一联系人，根据其手机号
-     *
-     * @param mobile
      */
     public void deleteContactFromMobile(String mobile) {
         SQLiteDatabase database = mHelper.getWritableDatabase();
