@@ -2,39 +2,45 @@ package com.whf.messagerelayer.service;
 
 import android.app.IntentService;
 import android.content.Intent;
+import android.util.Log;
 
 import com.whf.messagerelayer.data.bean.Contact;
-import com.whf.messagerelayer.data.Constant;
+import com.whf.messagerelayer.data.Constants;
 import com.whf.messagerelayer.utils.EmailRelayerManager;
-import com.whf.messagerelayer.utils.NativeDataManager;
+import com.whf.messagerelayer.utils.SharedPreferenceUtil;
 import com.whf.messagerelayer.utils.SmsRelayerManager;
 import com.whf.messagerelayer.data.DataBaseManager;
 
 import java.util.ArrayList;
 import java.util.Set;
 
-public class SmsService extends IntentService {
+public class RelayService extends IntentService {
 
-    private NativeDataManager mNativeDataManager;
+    private static final String TAG = Constants.TAG + RelayService.class.getSimpleName();
+
+    private SharedPreferenceUtil mSharedPreferenceUtil;
     private DataBaseManager mDataBaseManager;
 
-    public SmsService() {
-        super("SmsService");
+    public RelayService() {
+        super(RelayService.class.getSimpleName());
     }
 
-    public SmsService(String name) {
+    public RelayService(String name) {
         super(name);
     }
 
     @Override
     protected void onHandleIntent(Intent intent) {
-        mNativeDataManager = new NativeDataManager(this);
+        mSharedPreferenceUtil = SharedPreferenceUtil.getInstance(this);
         mDataBaseManager = new DataBaseManager(this);
 
-        String mobile = intent.getStringExtra(Constant.EXTRA_MESSAGE_MOBILE);
-        String content = intent.getStringExtra(Constant.EXTRA_MESSAGE_CONTENT);
-        Set<String> keySet = mNativeDataManager.getKeywordSet();
+        String mobile = intent.getStringExtra(Constants.EXTRA_MESSAGE_MOBILE);
+        String content = intent.getStringExtra(Constants.EXTRA_MESSAGE_CONTENT);
+        Set<String> keySet = mSharedPreferenceUtil.getKeywordSet();
         ArrayList<Contact> contactList = mDataBaseManager.getAllContact();
+
+        Log.d(TAG, "Receive Mobile = " + mobile + " Content = " + content);
+
         //无转发规则
         if (keySet.size() == 0 && contactList.size() == 0) {
             relayMessage(content);
@@ -68,19 +74,19 @@ public class SmsService extends IntentService {
     }
 
     private void relayMessage(String content) {
-        String suffix = mNativeDataManager.getContentSuffix();
-        String prefix = mNativeDataManager.getContentPrefix();
-        if(suffix!=null){
-            content = content+suffix;
+        String suffix = mSharedPreferenceUtil.getContentSuffix();
+        String prefix = mSharedPreferenceUtil.getContentPrefix();
+        if (suffix != null) {
+            content = content + suffix;
         }
-        if(prefix!=null){
-            content = prefix+content;
+        if (prefix != null) {
+            content = prefix + content;
         }
-        if (mNativeDataManager.getSmsRelay()) {
-            SmsRelayerManager.relaySms(mNativeDataManager, content);
+        if (mSharedPreferenceUtil.getSmsRelay()) {
+            SmsRelayerManager.relaySms(mSharedPreferenceUtil, content);
         }
-        if (mNativeDataManager.getEmailRelay()) {
-            EmailRelayerManager.relayEmail(mNativeDataManager, content);
+        if (mSharedPreferenceUtil.getEmailRelay()) {
+            EmailRelayerManager.relayEmail(mSharedPreferenceUtil, content);
         }
     }
 

@@ -21,7 +21,7 @@ import com.whf.messagerelayer.R;
 import com.whf.messagerelayer.view.adapter.ContactListAdapter;
 import com.whf.messagerelayer.view.adapter.decoration.ContactDecoration;
 import com.whf.messagerelayer.data.bean.Contact;
-import com.whf.messagerelayer.data.Constant;
+import com.whf.messagerelayer.data.Constants;
 import com.whf.messagerelayer.utils.ContactManager;
 import com.whf.messagerelayer.data.DataBaseManager;
 
@@ -133,7 +133,7 @@ public class ContactListActivity extends AppCompatActivity {
         dataBaseManager.addContactList(contactList);
         dataBaseManager.closeHelper();
         Intent intent = new Intent(this, SelectedContactActivity.class);
-        intent.putExtra(Constant.EXTRA_DATA_CHANGE, true);
+        intent.putExtra(Constants.EXTRA_DATA_CHANGE, true);
         startActivity(intent);
         finish();
     }

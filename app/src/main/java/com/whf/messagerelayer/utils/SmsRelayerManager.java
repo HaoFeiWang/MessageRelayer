@@ -10,7 +10,7 @@ public class SmsRelayerManager {
      * @param dataManager
      * @param content      短信内容
      */
-    public static void relaySms(NativeDataManager dataManager, String content) {
+    public static void relaySms(SharedPreferenceUtil dataManager, String content) {
         String objectMobile = dataManager.getObjectMobile();
         android.telephony.SmsManager smsManager = android.telephony.SmsManager.getDefault();
         smsManager.sendTextMessage(objectMobile, null, content, null, null);

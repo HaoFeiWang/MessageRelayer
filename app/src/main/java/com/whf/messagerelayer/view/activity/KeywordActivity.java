@@ -15,7 +15,7 @@ import android.widget.Toast;
 
 import com.google.android.flexbox.FlexboxLayout;
 import com.whf.messagerelayer.R;
-import com.whf.messagerelayer.utils.NativeDataManager;
+import com.whf.messagerelayer.utils.SharedPreferenceUtil;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -25,7 +25,7 @@ public class KeywordActivity extends AppCompatActivity {
 
     private FlexboxLayout mFlexboxLayout;
     private HashSet<String> mTextSet;
-    private NativeDataManager mNativeDataManager;
+    private SharedPreferenceUtil mSharedPreferenceUtil;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,8 +33,8 @@ public class KeywordActivity extends AppCompatActivity {
         setContentView(R.layout.activity_keyword);
         initActionbar();
 
-        mNativeDataManager = new NativeDataManager(this);
-        mTextSet = (HashSet<String>) mNativeDataManager.getKeywordSet();
+        mSharedPreferenceUtil = SharedPreferenceUtil.getInstance(this);
+        mTextSet = (HashSet<String>) mSharedPreferenceUtil.getKeywordSet();
 
         this.mFlexboxLayout = (FlexboxLayout) findViewById(R.id.layout_flexbox);
         initFlexboxLayout();
@@ -79,10 +79,10 @@ public class KeywordActivity extends AppCompatActivity {
             public void onClick(DialogInterface dialog, int which) {
                 String keyword = editText.getText().toString();
                 if(keyword.length()!=0){
-                    Set<String> set = new HashSet<>(mNativeDataManager.getKeywordSet());
+                    Set<String> set = new HashSet<>(mSharedPreferenceUtil.getKeywordSet());
                     mFlexboxLayout.addView(createItemView(keyword,set.size()));
                     set.add(keyword);
-                    mNativeDataManager.setKeywordSet(set);
+                    mSharedPreferenceUtil.setKeywordSet(set);
                 }else{
                     Toast.makeText(KeywordActivity.this,"请输入有效字符",Toast.LENGTH_LONG).show();
                 }
@@ -135,14 +135,13 @@ public class KeywordActivity extends AppCompatActivity {
 
     /**
      * 点击删除其View
-     * @param view
      */
     public void removeClick(View view){
         TextView textView = (TextView) view;
         String keyword = textView.getText().toString();
-        Set<String> set = new HashSet<>(mNativeDataManager.getKeywordSet());
+        Set<String> set = new HashSet<>(mSharedPreferenceUtil.getKeywordSet());
         set.remove(keyword);
-        mNativeDataManager.setKeywordSet(set);
+        mSharedPreferenceUtil.setKeywordSet(set);
 
         mFlexboxLayout.removeView((View) view.getParent());
     }

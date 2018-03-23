@@ -14,13 +14,13 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.whf.messagerelayer.R;
-import com.whf.messagerelayer.data.Constant;
-import com.whf.messagerelayer.utils.NativeDataManager;
+import com.whf.messagerelayer.data.Constants;
+import com.whf.messagerelayer.utils.SharedPreferenceUtil;
 
 public class RuleActivity extends AppCompatActivity implements View.OnClickListener {
 
     private RelativeLayout mMoblieRuleLayout, mKeywordRuleLayout, mPrefixRuleLayout, mSuffixRuleLayout;
-    private NativeDataManager mNativeDataManager;
+    private SharedPreferenceUtil mSharedPreferenceUtil;
     private TextView mPrefixText, mSuffixText;
 
     @Override
@@ -29,7 +29,7 @@ public class RuleActivity extends AppCompatActivity implements View.OnClickListe
         setContentView(R.layout.activity_rule);
 
         initActionbar();
-        mNativeDataManager = new NativeDataManager(this);
+        mSharedPreferenceUtil = SharedPreferenceUtil.getInstance(this);
         initView();
         initData();
         initListener();
@@ -60,11 +60,11 @@ public class RuleActivity extends AppCompatActivity implements View.OnClickListe
     }
 
     private void initData() {
-        String prefix = mNativeDataManager.getContentPrefix();
+        String prefix = mSharedPreferenceUtil.getContentPrefix();
         if (prefix != null) {
             mPrefixText.setText(prefix);
         }
-        String suffix = mNativeDataManager.getContentSuffix();
+        String suffix = mSharedPreferenceUtil.getContentSuffix();
         if (suffix != null) {
             mSuffixText.setText(suffix);
         }
@@ -88,10 +88,10 @@ public class RuleActivity extends AppCompatActivity implements View.OnClickListe
                 startActivity(new Intent(this, KeywordActivity.class));
                 break;
             case R.id.layout_rule_prefix:
-                showEditDialog("请输入要附加的内容前缀", Constant.KEY_CONTENT_PREFIX);
+                showEditDialog("请输入要附加的内容前缀", Constants.KEY_CONTENT_PREFIX);
                 break;
             case R.id.layout_rule_suffix:
-                showEditDialog("请输入要附加的内容后缀", Constant.KEY_CONTENT_SUFFIX);
+                showEditDialog("请输入要附加的内容后缀", Constants.KEY_CONTENT_SUFFIX);
                 break;
         }
     }
@@ -115,11 +115,11 @@ public class RuleActivity extends AppCompatActivity implements View.OnClickListe
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 String text = editText.getText().toString();
-                if (key.equals(Constant.KEY_CONTENT_PREFIX)) {
-                    mNativeDataManager.setContentPrefix(text);
+                if (key.equals(Constants.KEY_CONTENT_PREFIX)) {
+                    mSharedPreferenceUtil.setContentPrefix(text);
                     mPrefixText.setText(text);
                 } else {
-                    mNativeDataManager.setContentSuffix(text);
+                    mSharedPreferenceUtil.setContentSuffix(text);
                     mSuffixText.setText(text);
                 }
             }

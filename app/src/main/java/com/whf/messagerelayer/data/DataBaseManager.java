@@ -34,9 +34,9 @@ public class DataBaseManager {
     public void addContact(Contact contact) {
         SQLiteDatabase database = mHelper.getWritableDatabase();
         ContentValues values = new ContentValues();
-        values.put(Constant.DB_KEY_NAME, contact.getContactName());
-        values.put(Constant.DB_KEY_MOBLIE, contact.getContactNum());
-        database.insert(Constant.DB_TABLE_NAME, null, values);
+        values.put(Constants.DB_KEY_NAME, contact.getContactName());
+        values.put(Constants.DB_KEY_MOBLIE, contact.getContactNum());
+        database.insert(Constants.DB_TABLE_NAME, null, values);
     }
 
     /**
@@ -51,9 +51,9 @@ public class DataBaseManager {
                 num = FormatMobile.formatMobile(num);
             }
             ContentValues values = new ContentValues();
-            values.put(Constant.DB_KEY_NAME, contact.getContactName());
-            values.put(Constant.DB_KEY_MOBLIE, num);
-            database.insert(Constant.DB_TABLE_NAME, null, values);
+            values.put(Constants.DB_KEY_NAME, contact.getContactName());
+            values.put(Constants.DB_KEY_MOBLIE, num);
+            database.insert(Constants.DB_TABLE_NAME, null, values);
         }
     }
 
@@ -63,12 +63,12 @@ public class DataBaseManager {
     public ArrayList<Contact> getAllContact() {
         ArrayList<Contact> contactList = new ArrayList<>();
         SQLiteDatabase database = mHelper.getReadableDatabase();
-        Cursor cursor = database.query(Constant.DB_TABLE_NAME
+        Cursor cursor = database.query(Constants.DB_TABLE_NAME
                 , null, null, null, null, null, null);
         while (cursor.moveToNext()) {
             Contact contact = new Contact();
-            contact.setContactName(cursor.getString(cursor.getColumnIndex(Constant.DB_KEY_NAME)));
-            contact.setContactNum(cursor.getString(cursor.getColumnIndex(Constant.DB_KEY_MOBLIE)));
+            contact.setContactName(cursor.getString(cursor.getColumnIndex(Constants.DB_KEY_NAME)));
+            contact.setContactNum(cursor.getString(cursor.getColumnIndex(Constants.DB_KEY_MOBLIE)));
             contactList.add(contact);
         }
         return contactList;
@@ -79,7 +79,7 @@ public class DataBaseManager {
      */
     public void deleteContactFromMobile(String mobile) {
         SQLiteDatabase database = mHelper.getWritableDatabase();
-        database.delete(Constant.DB_TABLE_NAME, Constant.DB_KEY_MOBLIE + "= ?" , new String[]{mobile});
+        database.delete(Constants.DB_TABLE_NAME, Constants.DB_KEY_MOBLIE + "= ?" , new String[]{mobile});
     }
 
     /**
@@ -87,7 +87,7 @@ public class DataBaseManager {
      */
     public void deleteAll() {
         SQLiteDatabase database = mHelper.getWritableDatabase();
-        database.delete(Constant.DB_TABLE_NAME, null, null);
+        database.delete(Constants.DB_TABLE_NAME, null, null);
     }
 
     /**

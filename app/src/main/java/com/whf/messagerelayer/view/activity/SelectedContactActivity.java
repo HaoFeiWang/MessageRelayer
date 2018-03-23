@@ -21,14 +21,14 @@ import com.whf.messagerelayer.R;
 import com.whf.messagerelayer.view.adapter.ContactSelectedAdapter;
 import com.whf.messagerelayer.view.adapter.decoration.ContactDecoration;
 import com.whf.messagerelayer.data.bean.Contact;
-import com.whf.messagerelayer.data.Constant;
+import com.whf.messagerelayer.data.Constants;
 import com.whf.messagerelayer.data.DataBaseManager;
 
 import java.util.ArrayList;
 
 public class SelectedContactActivity extends AppCompatActivity implements View.OnClickListener {
 
-    private RecyclerView mSelcetedContactList;
+    private RecyclerView mSelectedContactList;
     private Button mAddContactButton, mAddOneContact;
     private ContactSelectedAdapter mContactAdapter;
 
@@ -38,7 +38,7 @@ public class SelectedContactActivity extends AppCompatActivity implements View.O
         setContentView(R.layout.activity_selected_contact);
         initActionbar();
 
-        mSelcetedContactList = (RecyclerView) findViewById(R.id.list_selected_contact);
+        mSelectedContactList = (RecyclerView) findViewById(R.id.list_selected_contact);
         mAddContactButton = (Button) findViewById(R.id.button_add_contact);
         mAddOneContact = (Button) findViewById(R.id.button_add_one);
 
@@ -50,7 +50,7 @@ public class SelectedContactActivity extends AppCompatActivity implements View.O
 
     @Override
     protected void onNewIntent(Intent intent) {
-        if(intent.getBooleanExtra(Constant.EXTRA_DATA_CHANGE,false)){
+        if(intent.getBooleanExtra(Constants.EXTRA_DATA_CHANGE,false)){
             mContactAdapter.notifyUpdata(getContactList());
         }
         super.onNewIntent(intent);
@@ -74,12 +74,12 @@ public class SelectedContactActivity extends AppCompatActivity implements View.O
      * 从保存被选中联系人的数据库中拿出所有数据，并填充到RecyclerView
      */
     private void initRecyclerView() {
-        mSelcetedContactList.addItemDecoration(new ContactDecoration());
-        mSelcetedContactList.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
+        mSelectedContactList.addItemDecoration(new ContactDecoration());
+        mSelectedContactList.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
 
         ArrayList<Contact> selectedList = getContactList();
         mContactAdapter = new ContactSelectedAdapter(this, selectedList);
-        mSelcetedContactList.setAdapter(mContactAdapter);
+        mSelectedContactList.setAdapter(mContactAdapter);
 
     }
 

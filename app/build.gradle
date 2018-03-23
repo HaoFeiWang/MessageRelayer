@@ -2,7 +2,7 @@ apply plugin: 'com.android.application'
 
 android {
     compileSdkVersion 25
-    buildToolsVersion "25.0.0"
+    buildToolsVersion "26.0.2"
     defaultConfig {
         applicationId "com.whf.messagerelayer"
         minSdkVersion 15
@@ -24,11 +24,11 @@ dependencies {
     androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
-    compile 'com.android.support:appcompat-v7:25.2.0'
     testCompile 'junit:junit:4.12'
+    compile 'com.android.support:appcompat-v7:25.4.0'
     compile 'com.sun.mail:android-mail:1.5.5'
     compile 'com.sun.mail:android-activation:1.5.5'
-    compile 'com.squareup.okhttp3:okhttp:3.6.0'
-    compile 'com.android.support:recyclerview-v7:25.2.0'
+    compile 'com.squareup.okhttp3:okhttp:3.9.0'
+    compile 'com.android.support:recyclerview-v7:25.4.0'
     compile 'com.google.android:flexbox:0.1.2'
 }

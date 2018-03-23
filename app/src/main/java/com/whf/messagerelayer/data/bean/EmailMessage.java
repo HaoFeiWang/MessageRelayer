@@ -1,14 +1,34 @@
 package com.whf.messagerelayer.data.bean;
 
 /**
+ * 邮件
  * Created by WHF on 2017/3/25.
  */
 
 public class EmailMessage {
+    /**
+     * 发送方账户
+     */
     private String mSenderAccount;
+
+    /**
+     * 接受方账户
+     */
     private String mReceiverAccount;
+
+    /**
+     * 名称
+     */
     private String mSenderName;
+
+    /**
+     * 主题
+     */
     private String mSubject;
+
+    /**
+     * 内容
+     */
     private String mContent;
 
     public EmailMessage() {
@@ -61,5 +81,16 @@ public class EmailMessage {
 
     public void setContent(String content) {
         this.mContent = content;
+    }
+
+    @Override
+    public String toString() {
+        return "EmailMessage{" +
+                "mSenderAccount='" + mSenderAccount + '\'' +
+                ", mReceiverAccount='" + mReceiverAccount + '\'' +
+                ", mSenderName='" + mSenderName + '\'' +
+                ", mSubject='" + mSubject + '\'' +
+                ", mContent='" + mContent + '\'' +
+                '}';
     }
 }

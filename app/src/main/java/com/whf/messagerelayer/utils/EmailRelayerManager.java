@@ -1,7 +1,7 @@
 package com.whf.messagerelayer.utils;
 
+import com.whf.messagerelayer.data.Constants;
 import com.whf.messagerelayer.data.bean.EmailMessage;
-import com.whf.messagerelayer.data.Constant;
 
 import java.io.UnsupportedEncodingException;
 import java.util.Properties;
@@ -32,7 +32,7 @@ public class EmailRelayerManager {
     private static final String HOST_OUTLOOK = "smtp.outlook.com";
 
     //发送短信至目标邮件
-    public static int relayEmail(NativeDataManager dataManager,String content) {
+    public static int relayEmail(SharedPreferenceUtil dataManager, String content) {
         Properties props = new Properties();
         User user = getSenderUser(dataManager);
         EmailMessage  emailMessage = creatEmailMessage(content,dataManager);
@@ -40,7 +40,7 @@ public class EmailRelayerManager {
 
         //是否开启SSL
         if (dataManager.getEmailSsl()){
-            if(dataManager.getEmailServicer()==Constant.EMAIL_SERVICER_OTHER){
+            if(dataManager.getEmailServicer()== Constants.EMAIL_SERVICER_OTHER){
                 setSslMode(props,PORT_SSL);
             }else{
                 String port = dataManager.getEmailPort();
@@ -101,7 +101,7 @@ public class EmailRelayerManager {
     /**
      * 从本地数据获取发送方账号和密码
      */
-    private static User getSenderUser(NativeDataManager dataManager){
+    private static User getSenderUser(SharedPreferenceUtil dataManager){
         return new User(dataManager.getEmailAccount(),dataManager.getEmailPassword());
     }
 
@@ -116,25 +116,25 @@ public class EmailRelayerManager {
     /**
      * 设置主机
      */
-    private static void setHost(NativeDataManager dataManager, Properties props) {
+    private static void setHost(SharedPreferenceUtil dataManager, Properties props) {
 
         switch (dataManager.getEmailServicer()) {
-            case Constant.EMAIL_SERVICER_QQ:
+            case Constants.EMAIL_SERVICER_QQ:
                 props.put("mail.smtp.host", HOST_QQ);
                 break;
-            case Constant.EMAIL_SERVICER_163:
+            case Constants.EMAIL_SERVICER_163:
                 props.put("mail.smtp.host", HOST_163);
                 break;
-            case Constant.EMAIL_SERVICER_126:
+            case Constants.EMAIL_SERVICER_126:
                 props.put("mail.smtp.host", HOST_126);
                 break;
-            case Constant.EMAIL_SERVICER_OUTLOOK:
+            case Constants.EMAIL_SERVICER_OUTLOOK:
                 props.put("mail.smtp.host", HOST_OUTLOOK);
                 break;
-            case Constant.EMAIL_SERVICER_GMAIL:
+            case Constants.EMAIL_SERVICER_GMAIL:
                 props.put("mail.smtp.host", HOST_GMAIL);
                 break;
-            case Constant.EMAIL_SERVICER_OTHER:
+            case Constants.EMAIL_SERVICER_OTHER:
                 String host = dataManager.getEmailHost();
                 if(host!=null){
                     props.put("mail.smtp.host", host);
@@ -180,7 +180,7 @@ public class EmailRelayerManager {
     /**
      * 封装消息实体
      */
-    private static EmailMessage creatEmailMessage(String content,NativeDataManager dataManager){
+    private static EmailMessage creatEmailMessage(String content,SharedPreferenceUtil dataManager){
         EmailMessage message = new EmailMessage();
         message.setContent(content);
         message.setSenderAccount(dataManager.getEmailAccount());

@@ -10,25 +10,25 @@ import android.widget.RelativeLayout;
 import android.widget.Toast;
 
 import com.whf.messagerelayer.R;
-import com.whf.messagerelayer.utils.NativeDataManager;
+import com.whf.messagerelayer.utils.SharedPreferenceUtil;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
     private RelativeLayout mSmsLayout, mEmailLayout, mRuleLayout;
-    private NativeDataManager mNativeDataManager;
+    private SharedPreferenceUtil mSharedPreferenceUtil;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        mNativeDataManager = new NativeDataManager(this);
+        mSharedPreferenceUtil = SharedPreferenceUtil.getInstance(this);
         initView();
     }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        Boolean isReceiver = mNativeDataManager.getReceiver();
+        Boolean isReceiver = mSharedPreferenceUtil.getReceiver();
         final MenuItem menuItem = menu.add("开关");
         if (isReceiver) {
             menuItem.setIcon(R.mipmap.ic_send_on);
@@ -39,13 +39,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         menuItem.setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
             @Override
             public boolean onMenuItemClick(MenuItem item) {
-                Boolean receiver = mNativeDataManager.getReceiver();
+                Boolean receiver = mSharedPreferenceUtil.getReceiver();
                 if(receiver){
-                    mNativeDataManager.setReceiver(false);
+                    mSharedPreferenceUtil.setReceiver(false);
                     menuItem.setIcon(R.mipmap.ic_send_off);
                     Toast.makeText(MainActivity.this,"总闸已关闭",Toast.LENGTH_SHORT).show();
                 }else{
-                    mNativeDataManager.setReceiver(true);
+                    mSharedPreferenceUtil.setReceiver(true);
                     menuItem.setIcon(R.mipmap.ic_send_on);
                     Toast.makeText(MainActivity.this,"总闸已开启",Toast.LENGTH_SHORT).show();
                 }

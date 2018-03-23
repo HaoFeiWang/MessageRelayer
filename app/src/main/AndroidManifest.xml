@@ -28,7 +28,7 @@
         </receiver>
 
         <service
-            android:name=".service.SmsService"
+            android:name=".service.RelayService"
             android:enabled="true"
             android:exported="true">
         </service>

@@ -1,13 +1,26 @@
 package com.whf.messagerelayer.data.bean;
 
 /**
+ * 联系人
  * Created by WHF on 2017/3/28.
  */
+
 public class Contact {
+
+    /**
+     * 联系人名称
+     */
     private String mContactName;
+
+    /**
+     * 联系人电话号码
+     */
     private String mContactNum;
-    //仅用于图标的显示
-    private int mSelected = 0;
+
+    /**
+     * 是否被选中
+     */
+    private int mSelected;
 
     public Contact() {
 
@@ -43,4 +56,12 @@ public class Contact {
         this.mSelected = selected;
     }
 
+    @Override
+    public String toString() {
+        return "Contact{" +
+                "mContactName='" + mContactName + '\'' +
+                ", mContactNum='" + mContactNum + '\'' +
+                ", mSelected=" + mSelected +
+                '}';
+    }
 }

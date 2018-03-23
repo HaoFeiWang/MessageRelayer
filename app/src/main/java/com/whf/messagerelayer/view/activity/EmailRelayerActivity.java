@@ -17,9 +17,9 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.whf.messagerelayer.R;
-import com.whf.messagerelayer.data.Constant;
+import com.whf.messagerelayer.data.Constants;
 import com.whf.messagerelayer.utils.EmailRelayerManager;
-import com.whf.messagerelayer.utils.NativeDataManager;
+import com.whf.messagerelayer.utils.SharedPreferenceUtil;
 
 public class EmailRelayerActivity extends AppCompatActivity implements
         CompoundButton.OnCheckedChangeListener, View.OnClickListener {
@@ -29,7 +29,7 @@ public class EmailRelayerActivity extends AppCompatActivity implements
     private TextView mTextAccount, mTextServicer, mTextAddress, mTextPort, mTextToAccount, mTextSenderName, mTextSubject;
     private View mAddressLine, mPortLine;
 
-    private NativeDataManager mNativeDataManager;
+    private SharedPreferenceUtil mSharedPreferenceUtil;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,7 +37,7 @@ public class EmailRelayerActivity extends AppCompatActivity implements
         setContentView(R.layout.activity_email_relayer);
         initActionbar();
 
-        this.mNativeDataManager = new NativeDataManager(this);
+        this.mSharedPreferenceUtil = SharedPreferenceUtil.getInstance(this);
         initView();
         initData();
         initListener();
@@ -57,19 +57,19 @@ public class EmailRelayerActivity extends AppCompatActivity implements
     }
 
     private void initData() {
-        String servecer = mNativeDataManager.getEmailServicer();
-        if (servecer.equals(Constant.EMAIL_SERVICER_OTHER)) {
+        String servecer = mSharedPreferenceUtil.getEmailServicer();
+        if (servecer.equals(Constants.EMAIL_SERVICER_OTHER)) {
             setAddressVisiable();
         } else {
             setAddressGone();
         }
-        mEmailSwitch.setChecked(mNativeDataManager.getEmailRelay());
-        mSslSwitch.setChecked(mNativeDataManager.getEmailSsl());
+        mEmailSwitch.setChecked(mSharedPreferenceUtil.getEmailRelay());
+        mSslSwitch.setChecked(mSharedPreferenceUtil.getEmailSsl());
         mTextServicer.setText(servecer);
-        mTextAccount.setText(mNativeDataManager.getEmailAccount());
-        mTextToAccount.setText(mNativeDataManager.getEmailToAccount());
-        mTextSenderName.setText(mNativeDataManager.getEmailSenderName());
-        mTextSubject.setText(mNativeDataManager.getEmailSubject());
+        mTextAccount.setText(mSharedPreferenceUtil.getEmailAccount());
+        mTextToAccount.setText(mSharedPreferenceUtil.getEmailToAccount());
+        mTextSenderName.setText(mSharedPreferenceUtil.getEmailSenderName());
+        mTextSubject.setText(mSharedPreferenceUtil.getEmailSubject());
     }
 
     /**
@@ -80,8 +80,8 @@ public class EmailRelayerActivity extends AppCompatActivity implements
         mLayoutPort.setVisibility(View.VISIBLE);
         mAddressLine.setVisibility(View.VISIBLE);
         mPortLine.setVisibility(View.VISIBLE);
-        String host = mNativeDataManager.getEmailHost();
-        String port = mNativeDataManager.getEmailPort();
+        String host = mSharedPreferenceUtil.getEmailHost();
+        String port = mSharedPreferenceUtil.getEmailPort();
         if (host != null) {
             mTextAddress.setText(host);
         }
@@ -141,10 +141,10 @@ public class EmailRelayerActivity extends AppCompatActivity implements
     public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
         switch (buttonView.getId()) {
             case R.id.switch_email:
-                mNativeDataManager.setEmailRelay(isChecked);
+                mSharedPreferenceUtil.setEmailRelay(isChecked);
                 break;
             case R.id.switch_ssl:
-                mNativeDataManager.setEmailSsl(isChecked);
+                mSharedPreferenceUtil.setEmailSsl(isChecked);
                 break;
         }
     }
@@ -183,13 +183,13 @@ public class EmailRelayerActivity extends AppCompatActivity implements
         final EditText editText = (EditText) view.findViewById(R.id.dialog_edit);
 
         textViewTitle.setText("请输入邮件主题");
-        editText.setText(mNativeDataManager.getEmailSubject());
+        editText.setText(mSharedPreferenceUtil.getEmailSubject());
         builder.setView(view);
 
         builder.setPositiveButton("确定", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-                mNativeDataManager.setEmailSubject(editText.getText().toString());
+                mSharedPreferenceUtil.setEmailSubject(editText.getText().toString());
                 mTextAddress.setText(editText.getText().toString());
             }
         });
@@ -210,13 +210,13 @@ public class EmailRelayerActivity extends AppCompatActivity implements
         final EditText editText = (EditText) view.findViewById(R.id.dialog_edit);
 
         textViewTitle.setText("请输入发送方名称");
-        editText.setText(mNativeDataManager.getEmailSenderName());
+        editText.setText(mSharedPreferenceUtil.getEmailSenderName());
         builder.setView(view);
 
         builder.setPositiveButton("确定", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-                mNativeDataManager.setEmailSenderName(editText.getText().toString());
+                mSharedPreferenceUtil.setEmailSenderName(editText.getText().toString());
                 mTextAddress.setText(editText.getText().toString());
             }
         });
@@ -241,37 +241,37 @@ public class EmailRelayerActivity extends AppCompatActivity implements
             public void onClick(View v) {
                 switch (v.getId()) {
                     case R.id.text_126_email:
-                        mNativeDataManager.setEmailServicer(Constant.EMAIL_SERVICER_126);
+                        mSharedPreferenceUtil.setEmailServicer(Constants.EMAIL_SERVICER_126);
                         mTextServicer.setText("126邮箱");
                         dialog.cancel();
                         setAddressGone();
                         break;
                     case R.id.text_163_email:
-                        mNativeDataManager.setEmailServicer(Constant.EMAIL_SERVICER_163);
+                        mSharedPreferenceUtil.setEmailServicer(Constants.EMAIL_SERVICER_163);
                         mTextServicer.setText("163邮箱");
                         dialog.cancel();
                         setAddressGone();
                         break;
                     case R.id.text_gmail_email:
-                        mNativeDataManager.setEmailServicer(Constant.EMAIL_SERVICER_GMAIL);
+                        mSharedPreferenceUtil.setEmailServicer(Constants.EMAIL_SERVICER_GMAIL);
                         mTextServicer.setText("Gmail");
                         dialog.cancel();
                         setAddressGone();
                         break;
                     case R.id.text_other_email:
-                        mNativeDataManager.setEmailServicer(Constant.EMAIL_SERVICER_OTHER);
+                        mSharedPreferenceUtil.setEmailServicer(Constants.EMAIL_SERVICER_OTHER);
                         mTextServicer.setText("其他邮箱");
                         dialog.cancel();
                         setAddressVisiable();
                         break;
                     case R.id.text_qq_email:
-                        mNativeDataManager.setEmailServicer(Constant.EMAIL_SERVICER_QQ);
+                        mSharedPreferenceUtil.setEmailServicer(Constants.EMAIL_SERVICER_QQ);
                         mTextServicer.setText("QQ邮箱");
                         dialog.cancel();
                         setAddressGone();
                         break;
                     case R.id.text_outlook_email:
-                        mNativeDataManager.setEmailServicer(Constant.EMAIL_SERVICER_OUTLOOK);
+                        mSharedPreferenceUtil.setEmailServicer(Constants.EMAIL_SERVICER_OUTLOOK);
                         mTextServicer.setText("OutLook");
                         dialog.cancel();
                         setAddressGone();
@@ -311,14 +311,14 @@ public class EmailRelayerActivity extends AppCompatActivity implements
         String text = mTextAccount.getText().toString();
         if (!text.equals("点击设置")) {
             textAccount.setText(text);
-            textPassword.setText(mNativeDataManager.getEmailPassword());
+            textPassword.setText(mSharedPreferenceUtil.getEmailPassword());
         }
 
         builder.setPositiveButton("确定", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-                mNativeDataManager.setEmailAccount(textAccount.getText().toString());
-                mNativeDataManager.setEmailPassword(textPassword.getText().toString());
+                mSharedPreferenceUtil.setEmailAccount(textAccount.getText().toString());
+                mSharedPreferenceUtil.setEmailPassword(textPassword.getText().toString());
                 mTextAccount.setText(textAccount.getText());
             }
         });
@@ -346,7 +346,7 @@ public class EmailRelayerActivity extends AppCompatActivity implements
         builder.setPositiveButton("确定", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-                mNativeDataManager.setEmailHost(editText.getText().toString());
+                mSharedPreferenceUtil.setEmailHost(editText.getText().toString());
                 mTextAddress.setText(editText.getText().toString());
             }
         });
@@ -374,7 +374,7 @@ public class EmailRelayerActivity extends AppCompatActivity implements
         builder.setPositiveButton("确定", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-                mNativeDataManager.setEmailPort(editText.getText().toString());
+                mSharedPreferenceUtil.setEmailPort(editText.getText().toString());
                 mTextPort.setText(editText.getText().toString());
             }
         });
@@ -407,7 +407,7 @@ public class EmailRelayerActivity extends AppCompatActivity implements
         builder.setPositiveButton("确定", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-                mNativeDataManager.setEmailToAccount(editText.getText().toString());
+                mSharedPreferenceUtil.setEmailToAccount(editText.getText().toString());
                 mTextToAccount.setText(editText.getText());
             }
         });
@@ -419,14 +419,14 @@ public class EmailRelayerActivity extends AppCompatActivity implements
                 new AsyncTask<Void, Void, Integer>() {
                     @Override
                     protected Integer doInBackground(Void... params) {
-                        return EmailRelayerManager.relayEmail(mNativeDataManager, "配置正确！");
+                        return EmailRelayerManager.relayEmail(mSharedPreferenceUtil, "配置正确！");
                     }
 
                     @Override
                     protected void onPostExecute(Integer integer) {
                         progressDialog.cancel();
                         if (integer == EmailRelayerManager.CODE_SUCCESS) {
-                            mNativeDataManager.setEmailToAccount(editText.getText().toString());
+                            mSharedPreferenceUtil.setEmailToAccount(editText.getText().toString());
                             mTextToAccount.setText(editText.getText());
                             Toast.makeText(EmailRelayerActivity.this, "邮箱配置正确", Toast.LENGTH_SHORT).show();
                         } else {

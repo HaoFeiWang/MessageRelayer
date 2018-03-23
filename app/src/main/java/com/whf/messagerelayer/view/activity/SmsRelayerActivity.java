@@ -15,7 +15,7 @@ import android.widget.Switch;
 import android.widget.TextView;
 
 import com.whf.messagerelayer.R;
-import com.whf.messagerelayer.utils.NativeDataManager;
+import com.whf.messagerelayer.utils.SharedPreferenceUtil;
 
 
 public class SmsRelayerActivity extends AppCompatActivity
@@ -25,7 +25,7 @@ public class SmsRelayerActivity extends AppCompatActivity
     private RelativeLayout mMobileRelative, mCenterRelative;
     private TextView mMobileText, mCenterText;
 
-    private NativeDataManager mNativeDataManager;
+    private SharedPreferenceUtil mSharedPreferenceUtil;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,7 +50,7 @@ public class SmsRelayerActivity extends AppCompatActivity
     }
 
     private void init() {
-        mNativeDataManager = new NativeDataManager(this);
+        mSharedPreferenceUtil = SharedPreferenceUtil.getInstance(this);
 
         initView();
         initData();
@@ -65,12 +65,12 @@ public class SmsRelayerActivity extends AppCompatActivity
     }
 
     private void initData() {
-        if (mNativeDataManager.getSmsRelay()) {
+        if (mSharedPreferenceUtil.getSmsRelay()) {
             mSmsSwitch.setChecked(true);
         } else {
             mSmsSwitch.setChecked(false);
         }
-        mMobileText.setText(mNativeDataManager.getObjectMobile());
+        mMobileText.setText(mSharedPreferenceUtil.getObjectMobile());
     }
 
     private void initListener() {
@@ -95,9 +95,9 @@ public class SmsRelayerActivity extends AppCompatActivity
      */
     private void smsChecked(boolean isChecked) {
         if (isChecked) {
-            mNativeDataManager.setSmsRelay(true);
+            mSharedPreferenceUtil.setSmsRelay(true);
         } else {
-            mNativeDataManager.setSmsRelay(false);
+            mSharedPreferenceUtil.setSmsRelay(false);
         }
     }
 
@@ -131,7 +131,7 @@ public class SmsRelayerActivity extends AppCompatActivity
         builder.setPositiveButton("确定", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-                mNativeDataManager.setObjectMobile(mobileEdit.getText().toString());
+                mSharedPreferenceUtil.setObjectMobile(mobileEdit.getText().toString());
                 mMobileText.setText(mobileEdit.getText());
             }
         });
